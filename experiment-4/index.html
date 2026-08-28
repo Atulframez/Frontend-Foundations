@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Experiment 4: Design a web page to demonstrate Image Mapping - CSIT248 Advanced Web Technology">
+  <title>Experiment 04 - Client-Side Image Mapping (Inline CSS)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body style="margin: 0; padding: 0; font-family: 'Inter', system-ui, -apple-system, sans-serif; background-color: #0f172a; color: #f8fafc; line-height: 1.6; min-height: 100vh;">
+
+  <!-- Navigation (Inline CSS) -->
+  <nav style="position: sticky; top: 0; z-index: 100; background: rgba(15, 23, 42, 0.92); backdrop-filter: blur(12px); border-bottom: 1px solid #334155; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center;">
+    <a href="../index.html" style="font-weight: 800; font-size: 1.2rem; color: #818cf8; text-decoration: none; display: flex; align-items: center; gap: 0.5rem;">
+      <span style="background: rgba(99, 102, 241, 0.15); border: 1px solid rgba(99, 102, 241, 0.3); padding: 0.2rem 0.5rem; border-radius: 6px;">&larr;</span>
+      CSIT248 Lab Work
+    </a>
+    <div style="display: flex; gap: 1rem; align-items: center;">
+      <span style="font-size: 0.8rem; background: rgba(99, 102, 241, 0.12); color: #a5b4fc; border: 1px solid rgba(99, 102, 241, 0.25); padding: 0.3rem 0.75rem; border-radius: 9999px; font-weight: 600;">
+        Formatted Exclusively with Inline CSS
+      </span>
+      <a href="../index.html" style="background: #6366f1; color: #ffffff; padding: 0.4rem 0.9rem; border-radius: 6px; text-decoration: none; font-size: 0.85rem; font-weight: 600;">
+        All Experiments
+      </a>
+    </div>
+  </nav>
+
+  <main style="max-width: 1200px; margin: 0 auto; padding: 2.5rem 1.5rem;">
+
+    <!-- Header (Inline CSS) -->
+    <header style="text-align: center; margin-bottom: 2rem;">
+      <h1 style="font-size: 2.25rem; font-weight: 800; color: #ffffff; margin: 0 0 0.5rem 0;">Demonstration of HTML5 Image Mapping</h1>
+      <p style="color: #94a3b8; font-size: 1.05rem; max-width: 750px; margin: 0 auto;">
+        Interactive demonstration of the HTML <code>&lt;map&gt;</code> and <code>&lt;area&gt;</code> tags using rectangular (<code>rect</code>), circular (<code>circle</code>), and polygonal (<code>poly</code>) clickable hotspot regions.
+      </p>
+    </header>
+
+    <!-- Interactive Demo Layout (Inline CSS) -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.5rem; margin-bottom: 2.5rem;">
+      
+      <!-- Main Visual Map Box (Inline CSS) -->
+      <section style="background: #1e293b; border: 1px solid #334155; border-radius: 14px; padding: 1.25rem; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); display: flex; flex-direction: column; align-items: center;">
+        <div style="position: relative; width: 100%; max-width: 800px; border-radius: 8px; overflow: hidden; border: 1px solid #475569; background: #000;">
+          <!-- The mapped image with usemap attribute -->
+          <img 
+            src="workstation.svg" 
+            alt="Workstation Setup Map" 
+            width="800" 
+            height="500" 
+            usemap="#workstation-map" 
+            id="workstation-img"
+            style="display: block; width: 100%; height: auto; user-select: none;"
+          >
+
+          <!-- Standard HTML5 Client-Side Image Map -->
+          <map name="workstation-map" id="workstation-map">
+            <!-- 1. Monitor (RECT) -->
+            <area 
+              shape="rect" 
+              coords="220,60,580,280" 
+              href="#monitor" 
+              alt="4K UltraWide Monitor" 
+              title="Click to inspect Monitor [RECT: 220,60,580,280]"
+              data-name="4K UltraWide Curved Monitor"
+              data-type="Output Display Device"
+              data-shape="rect: 220,60,580,280"
+              data-desc="Primary visual output device. 34-inch IPS panel with 3840x1440 resolution, 144Hz refresh rate, and 99% sRGB color gamut for programming and multimedia workflows."
+            >
+
+            <!-- 2. Mechanical Keyboard (RECT) -->
+            <area 
+              shape="rect" 
+              coords="240,330,560,420" 
+              href="#keyboard" 
+              alt="Mechanical Keyboard" 
+              title="Click to inspect Keyboard [RECT: 240,330,560,420]"
+              data-name="Custom Mechanical Keyboard"
+              data-type="Alphanumeric Input Device"
+              data-shape="rect: 240,330,560,420"
+              data-desc="Tactile 75% ANSI layout keyboard with hot-swappable lubricated switches, double-shot PBT keycaps, and RGB per-key backlighting."
+            >
+
+            <!-- 3. Ergonomic Mouse (CIRCLE) -->
+            <area 
+              shape="circle" 
+              coords="630,375,35" 
+              href="#mouse" 
+              alt="Ergonomic Optical Mouse" 
+              title="Click to inspect Mouse [CIRCLE: 630,375,35]"
+              data-name="Wireless Ergonomic Mouse"
+              data-type="Pointing Input Device"
+              data-shape="circle: (630, 375), r=35"
+              data-desc="Precision optical sensor with up to 26,000 DPI, programmable macro buttons, and hyper-fast magnetic scroll wheel."
+            >
+
+            <!-- 4. Coffee Mug (CIRCLE) -->
+            <area 
+              shape="circle" 
+              coords="150,360,35" 
+              href="#coffee" 
+              alt="Programmer Coffee Mug" 
+              title="Click to inspect Coffee Mug [CIRCLE: 150,360,35]"
+              data-name="Developer Coffee Mug"
+              data-type="Productivity Fuel"
+              data-shape="circle: (150, 360), r=35"
+              data-desc="Ceramic insulated mug holding freshly brewed dark roast espresso — essential fuel for debugging code and writing clean HTML5!"
+            >
+
+            <!-- 5. PC Tower (POLY) -->
+            <area 
+              shape="poly" 
+              coords="640,70,760,70,760,300,640,300" 
+              href="#tower" 
+              alt="High-Performance Desktop Tower" 
+              title="Click to inspect PC Tower [POLY: 640,70,760,70,760,300,640,300]"
+              data-name="High-Performance Desktop Tower"
+              data-type="Central Processing Unit (CPU)"
+              data-shape="poly: 640,70, 760,70, 760,300, 640,300"
+              data-desc="Custom liquid-cooled workstation containing an AMD Ryzen 9 16-Core processor, 64GB DDR5 RAM, and NVIDIA RTX GPU."
+            >
+
+            <!-- 6. Studio Headphones (POLY) -->
+            <area 
+              shape="poly" 
+              coords="60,110,120,70,170,110,170,220,120,250,60,220" 
+              href="#headphones" 
+              alt="Studio Monitoring Headphones" 
+              title="Click to inspect Headphones [POLY: 60,110,120,70,170,110,170,220,120,250,60,220]"
+              data-name="Studio Monitoring Headphones"
+              data-type="Audio Output Peripheral"
+              data-shape="poly: 60,110, 120,70, 170,110, 170,220, 120,250, 60,220"
+              data-desc="Open-back planar magnetic headphones for deep focus music, spatial audio rendering, and crisp voice communications."
+            >
+          </map>
+        </div>
+
+        <div style="width: 100%; margin-top: 0.75rem; display: flex; justify-content: space-between; background: #090d16; padding: 0.5rem 1rem; border-radius: 6px; font-family: monospace; font-size: 0.85rem; color: #a5b4fc; box-sizing: border-box;">
+          <span id="coord-display">Pointer Coordinates: (X: --, Y: --)</span>
+          <span style="color: #6ee7b7;">Hover or Click any hotspot area!</span>
+        </div>
+      </section>
+
+      <!-- Side Inspector Panel (Inline CSS) -->
+      <aside style="background: #1e293b; border: 1px solid #334155; border-radius: 14px; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);">
+        <h3 style="font-size: 1.25rem; color: #ffffff; border-bottom: 1px solid #334155; padding-bottom: 0.75rem; margin: 0; display: flex; align-items: center; gap: 0.5rem;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="16" x2="12" y2="12"></line>
+            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+          </svg>
+          Hotspot Inspector
+        </h3>
+
+        <div id="device-info-box" style="background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 10px; padding: 1.25rem; min-height: 160px;">
+          <div id="device-name" style="font-size: 1.2rem; font-weight: 700; color: #38bdf8; margin-bottom: 0.35rem;">Select an Element</div>
+          <div id="device-shape" style="font-size: 0.8rem; background: #1e1b4b; color: #a5b4fc; padding: 0.15rem 0.5rem; border-radius: 4px; display: inline-block; margin-bottom: 0.75rem; font-family: monospace;">Shape: Hover over image</div>
+          <p id="device-desc" style="font-size: 0.9rem; color: #e2e8f0; line-height: 1.5; margin: 0;">
+            Move your mouse cursor over the workstation image or click on the hotspots (Monitor, Keyboard, Mouse, Mug, PC Tower, Headphones) to test the HTML Image Map.
+          </p>
+        </div>
+
+        <h4 style="font-size: 0.95rem; color: #94a3b8; margin: 0.5rem 0 0 0;">Quick Hotspot Links:</h4>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem; margin: 0; padding: 0;">
+          <li onclick="triggerArea('Monitor')" style="padding: 0.6rem 0.85rem; background: rgba(255, 255, 255, 0.04); border: 1px solid #334155; border-radius: 6px; font-size: 0.85rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+            <span>🖥️ 4K Monitor</span>
+            <code style="font-size: 0.75rem; color: #38bdf8; font-family: monospace;">shape="rect"</code>
+          </li>
+          <li onclick="triggerArea('Keyboard')" style="padding: 0.6rem 0.85rem; background: rgba(255, 255, 255, 0.04); border: 1px solid #334155; border-radius: 6px; font-size: 0.85rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+            <span>⌨️ Keyboard</span>
+            <code style="font-size: 0.75rem; color: #38bdf8; font-family: monospace;">shape="rect"</code>
+          </li>
+          <li onclick="triggerArea('Mouse')" style="padding: 0.6rem 0.85rem; background: rgba(255, 255, 255, 0.04); border: 1px solid #334155; border-radius: 6px; font-size: 0.85rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+            <span>🖱️ Mouse</span>
+            <code style="font-size: 0.75rem; color: #38bdf8; font-family: monospace;">shape="circle"</code>
+          </li>
+          <li onclick="triggerArea('Coffee')" style="padding: 0.6rem 0.85rem; background: rgba(255, 255, 255, 0.04); border: 1px solid #334155; border-radius: 6px; font-size: 0.85rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+            <span>☕ Coffee Mug</span>
+            <code style="font-size: 0.75rem; color: #38bdf8; font-family: monospace;">shape="circle"</code>
+          </li>
+          <li onclick="triggerArea('PC Tower')" style="padding: 0.6rem 0.85rem; background: rgba(255, 255, 255, 0.04); border: 1px solid #334155; border-radius: 6px; font-size: 0.85rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+            <span>🖥️ PC Tower</span>
+            <code style="font-size: 0.75rem; color: #38bdf8; font-family: monospace;">shape="poly"</code>
+          </li>
+          <li onclick="triggerArea('Headphones')" style="padding: 0.6rem 0.85rem; background: rgba(255, 255, 255, 0.04); border: 1px solid #334155; border-radius: 6px; font-size: 0.85rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+            <span>🎧 Headphones</span>
+            <code style="font-size: 0.75rem; color: #38bdf8; font-family: monospace;">shape="poly"</code>
+          </li>
+        </ul>
+      </aside>
+
+    </div>
+
+    <!-- Technical Code Reference (Inline CSS) -->
+    <section style="background: #1e293b; border: 1px solid #334155; border-radius: 14px; padding: 1.5rem; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);">
+      <h2 style="font-size: 1.3rem; color: #ffffff; margin: 0 0 1rem 0;">HTML5 Implementation Code Breakdown</h2>
+      <pre style="background: #090d16; border: 1px solid #334155; border-radius: 8px; padding: 1.25rem; overflow-x: auto; font-family: 'Fira Code', monospace; font-size: 0.85rem; color: #e2e8f0; line-height: 1.5; margin: 0;"><code>&lt;!-- Associating Image with Map using usemap --&gt;
+&lt;img src="workstation.svg" width="800" height="500" alt="Workstation" usemap="#workstation-map"&gt;
+
+&lt;!-- Client-Side Image Map Definition --&gt;
+&lt;map name="workstation-map"&gt;
+  &lt;!-- 1. RECTANGLE: coords="x1,y1, x2,y2" --&gt;
+  &lt;area shape="rect" coords="220,60,580,280" href="#monitor" alt="Monitor"&gt;
+  &lt;area shape="rect" coords="240,330,560,420" href="#keyboard" alt="Keyboard"&gt;
+
+  &lt;!-- 2. CIRCLE: coords="centerX, centerY, radius" --&gt;
+  &lt;area shape="circle" coords="630,375,35" href="#mouse" alt="Mouse"&gt;
+  &lt;area shape="circle" coords="150,360,35" href="#coffee" alt="Coffee Mug"&gt;
+
+  &lt;!-- 3. POLYGON: coords="x1,y1, x2,y2, x3,y3, ... xn,yn" --&gt;
+  &lt;area shape="poly" coords="640,70,760,70,760,300,640,300" href="#tower" alt="PC Tower"&gt;
+  &lt;area shape="poly" coords="60,110,120,70,170,110,170,220,120,250,60,220" href="#headphones" alt="Headphones"&gt;
+&lt;/map&gt;</code></pre>
+    </section>
+
+  </main>
+
+  <!-- Interactive JavaScript Helper for coordinate tracker and inspector -->
+  <script>
+    const img = document.getElementById('workstation-img');
+    const coordDisplay = document.getElementById('coord-display');
+    const devName = document.getElementById('device-name');
+    const devShape = document.getElementById('device-shape');
+    const devDesc = document.getElementById('device-desc');
+    const areas = document.querySelectorAll('map area');
+
+    // Real-time Coordinate tracking on image
+    img.addEventListener('mousemove', (e) => {
+      const rect = img.getBoundingClientRect();
+      const scaleX = 800 / rect.width;
+      const scaleY = 500 / rect.height;
+      const x = Math.round((e.clientX - rect.left) * scaleX);
+      const y = Math.round((e.clientY - rect.top) * scaleY);
+      coordDisplay.textContent = `Pointer Coordinates: (X: ${x}, Y: ${y})`;
+    });
+
+    // Area click and hover handlers
+    areas.forEach(area => {
+      area.addEventListener('click', (e) => {
+        e.preventDefault();
+        displayDetails(area);
+      });
+      area.addEventListener('mouseenter', () => {
+        displayDetails(area);
+      });
+    });
+
+    function displayDetails(area) {
+      devName.textContent = area.dataset.name;
+      devShape.textContent = `Type: ${area.dataset.type} | Shape: ${area.dataset.shape}`;
+      devDesc.textContent = area.dataset.desc;
+    }
+
+    function triggerArea(keyword) {
+      const targetArea = Array.from(areas).find(a => a.dataset.name.toLowerCase().includes(keyword.toLowerCase()));
+      if (targetArea) {
+        displayDetails(targetArea);
+      }
+    }
+  </script>
+
+  <!-- Footer (Inline CSS) -->
+  <footer style="background: #090d16; border-top: 1px solid #1e293b; padding: 2rem 1.5rem; text-align: center; color: #94a3b8; font-size: 0.875rem; margin-top: 3rem;">
+    <p style="margin: 0 0 0.5rem 0;">Experiment 04 &bull; CSIT248 Advanced Web Technology &bull; Image Mapping Demonstration</p>
+    <p style="margin: 0 0 0.75rem 0; color: #64748b; font-size: 0.8rem;">Formatted using 100% Inline CSS properties.</p>
+    <p style="margin: 0;"><a href="../index.html" style="color: #818cf8; text-decoration: none; font-weight: 600;">&uarr; Back to Lab Work Portal</a></p>
+  </footer>
+
+</body>
+</html>
