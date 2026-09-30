@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Experiment 3: Design a web page to display timetable of current semester - CSIT248 Advanced Web Technology">
+  <title>Experiment 03 - Current Semester Timetable (Inline CSS)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body style="margin: 0; padding: 0; font-family: 'Inter', system-ui, -apple-system, sans-serif; background-color: #0f172a; color: #f8fafc; line-height: 1.6; min-height: 100vh;">
+
+  <!-- Navigation (Inline CSS) -->
+  <nav style="position: sticky; top: 0; z-index: 100; background: rgba(15, 23, 42, 0.92); backdrop-filter: blur(12px); border-bottom: 1px solid #334155; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center;">
+    <a href="../index.html" style="font-weight: 800; font-size: 1.2rem; color: #818cf8; text-decoration: none; display: flex; align-items: center; gap: 0.5rem;">
+      <span style="background: rgba(99, 102, 241, 0.15); border: 1px solid rgba(99, 102, 241, 0.3); padding: 0.2rem 0.5rem; border-radius: 6px;">&larr;</span>
+      CSIT248 Lab Work
+    </a>
+    <div style="display: flex; gap: 1rem; align-items: center;">
+      <span style="font-size: 0.8rem; background: rgba(99, 102, 241, 0.12); color: #a5b4fc; border: 1px solid rgba(99, 102, 241, 0.25); padding: 0.3rem 0.75rem; border-radius: 9999px; font-weight: 600;">
+        Formatted Exclusively with Inline CSS
+      </span>
+      <a href="../index.html" style="background: #6366f1; color: #ffffff; padding: 0.4rem 0.9rem; border-radius: 6px; text-decoration: none; font-size: 0.85rem; font-weight: 600;">
+        All Experiments
+      </a>
+    </div>
+  </nav>
+
+  <main style="max-width: 1300px; margin: 0 auto; padding: 2.5rem 1.5rem;">
+    
+    <!-- Header (Inline CSS) -->
+    <header style="text-align: center; margin-bottom: 2rem;">
+      <h1 style="font-size: 2.25rem; font-weight: 800; color: #ffffff; margin: 0 0 0.5rem 0;">Department of Computer Applications</h1>
+      <p style="color: #94a3b8; font-size: 1.05rem; margin: 0 0 1rem 0;">Amity University Noida &bull; Academic Year 2025&ndash;2026</p>
+      
+      <div style="display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap;">
+        <span style="background: rgba(99, 102, 241, 0.15); color: #a5b4fc; border: 1px solid rgba(99, 102, 241, 0.3); padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.85rem; font-weight: 600;">Program: BCA (Hons.) with Research</span>
+        <span style="background: rgba(99, 102, 241, 0.15); color: #a5b4fc; border: 1px solid rgba(99, 102, 241, 0.3); padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.85rem; font-weight: 600;">Semester: III</span>
+        <span style="background: rgba(99, 102, 241, 0.15); color: #a5b4fc; border: 1px solid rgba(99, 102, 241, 0.3); padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.85rem; font-weight: 600;">Classroom: Room 408 (Academic Block)</span>
+        <span style="background: rgba(99, 102, 241, 0.15); color: #a5b4fc; border: 1px solid rgba(99, 102, 241, 0.3); padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.85rem; font-weight: 600;">Total Credits: 24</span>
+      </div>
+    </header>
+
+    <!-- HTML Timetable Table (Inline CSS) -->
+    <div style="background: #1e293b; border: 1px solid #334155; border-radius: 14px; padding: 1.5rem; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); overflow-x: auto; margin-bottom: 2.5rem;">
+      <table border="1" cellpadding="8" cellspacing="0" style="width: 100%; border-collapse: collapse; text-align: center; min-width: 950px; border-color: #334155;">
+        <caption style="font-size: 1.25rem; font-weight: 700; color: #f8fafc; padding-bottom: 1rem; text-align: left;">
+          Weekly Academic Schedule &amp; Lab Allocations (Table Structure)
+        </caption>
+        <thead>
+          <tr style="background: #1e1b4b; color: #e0e7ff;">
+            <th rowspan="2" style="width: 110px; padding: 0.75rem 0.5rem; border: 1px solid #475569; font-weight: 700;">Day / Time</th>
+            <th style="padding: 0.75rem 0.5rem; border: 1px solid #475569; font-weight: 700;">
+              Period I
+              <span style="font-size: 0.75rem; font-weight: 500; color: #a5b4fc; display: block; margin-top: 0.2rem;">09:00 - 10:00</span>
+            </th>
+            <th style="padding: 0.75rem 0.5rem; border: 1px solid #475569; font-weight: 700;">
+              Period II
+              <span style="font-size: 0.75rem; font-weight: 500; color: #a5b4fc; display: block; margin-top: 0.2rem;">10:00 - 11:00</span>
+            </th>
+            <th style="padding: 0.75rem 0.5rem; border: 1px solid #475569; font-weight: 700;">
+              Period III
+              <span style="font-size: 0.75rem; font-weight: 500; color: #a5b4fc; display: block; margin-top: 0.2rem;">11:00 - 12:00</span>
+            </th>
+            <th style="padding: 0.75rem 0.5rem; border: 1px solid #475569; font-weight: 700;">
+              Period IV
+              <span style="font-size: 0.75rem; font-weight: 500; color: #a5b4fc; display: block; margin-top: 0.2rem;">12:00 - 01:00</span>
+            </th>
+            <th rowspan="2" style="width: 60px; padding: 0.75rem 0.5rem; border: 1px solid #475569; font-weight: 700;">
+              Lunch
+              <span style="font-size: 0.75rem; font-weight: 500; color: #a5b4fc; display: block; margin-top: 0.2rem;">01:00 - 02:00</span>
+            </th>
+            <th style="padding: 0.75rem 0.5rem; border: 1px solid #475569; font-weight: 700;">
+              Period V
+              <span style="font-size: 0.75rem; font-weight: 500; color: #a5b4fc; display: block; margin-top: 0.2rem;">02:00 - 03:00</span>
+            </th>
+            <th style="padding: 0.75rem 0.5rem; border: 1px solid #475569; font-weight: 700;">
+              Period VI
+              <span style="font-size: 0.75rem; font-weight: 500; color: #a5b4fc; display: block; margin-top: 0.2rem;">03:00 - 04:00</span>
+            </th>
+            <th style="padding: 0.75rem 0.5rem; border: 1px solid #475569; font-weight: 700;">
+              Period VII
+              <span style="font-size: 0.75rem; font-weight: 500; color: #a5b4fc; display: block; margin-top: 0.2rem;">04:00 - 05:00</span>
+            </th>
+          </tr>
+          <tr style="background: #1e1b4b; color: #cbd5e1; font-size: 0.8rem;">
+            <th style="border: 1px solid #475569; padding: 0.4rem;">Slot 1</th>
+            <th style="border: 1px solid #475569; padding: 0.4rem;">Slot 2</th>
+            <th style="border: 1px solid #475569; padding: 0.4rem;">Slot 3</th>
+            <th style="border: 1px solid #475569; padding: 0.4rem;">Slot 4</th>
+            <th style="border: 1px solid #475569; padding: 0.4rem;">Slot 5</th>
+            <th style="border: 1px solid #475569; padding: 0.4rem;">Slot 6</th>
+            <th style="border: 1px solid #475569; padding: 0.4rem;">Slot 7</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- MONDAY -->
+          <tr>
+            <th style="background: #1e293b; color: #38bdf8; font-weight: 700; border: 1px solid #475569; padding: 0.75rem 0.5rem;">MONDAY</th>
+            <td colspan="2" style="border: 1px solid #475569; padding: 0.5rem;">
+              <div style="background: rgba(6, 182, 212, 0.25); color: #67e8f9; border: 1px solid rgba(6, 182, 212, 0.5); padding: 0.4rem 0.3rem; border-radius: 6px; font-weight: 600;">
+                <span style="font-size: 0.85rem; font-weight: 800; display: block;">CSIT244 (Lab)</span>
+                <span style="font-size: 0.75rem; opacity: 0.85; display: block;">Database Systems Lab &bull; Lab 204</span>
+                <span style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; display: block;">Practical (2 hrs)</span>
+              </div>
+            </td>
+            <td style="border: 1px solid #475569; padding: 0.5rem;">
+              <div style="background: rgba(59, 130, 246, 0.2); color: #93c5fd; border: 1px solid rgba(59, 130, 246, 0.4); padding: 0.4rem 0.3rem; border-radius: 6px; font-weight: 600;">
+                <span style="font-size: 0.85rem; font-weight: 800; display: block;">CSIT248</span>
+                <span style="font-size: 0.75rem; opacity: 0.85; display: block;">Adv. Web Tech &bull; R-408</span>
+                <span style="font-size: 0.7rem; text-transform: uppercase; display: block;">Lecture</span>
+              </div>
+            </td>
+            <td style="border: 1px solid #475569; padding: 0.5rem;">
+              <div style="background: rgba(139, 92, 246, 0.2); color: #c4b5fd; border: 1px solid rgba(139, 92, 246, 0.4); padding: 0.4rem 0.3rem; border-radius: 6px; font-weight: 600;">
+                <span style="font-size: 0.85rem; font-weight: 800; display: block;">MATH302</span>
+                <span style="font-size: 0.75rem; opacity: 0.85; display: block;">Discrete Math &bull; R-408</span>
+                <span style="font-size: 0.7rem; text-transform: uppercase; display: block;">Lecture</span>
+              </div>
+            </td>
+            <!-- LUNCH BREAK ROWSPAN: Spanning across all 5 Days (Mon-Fri) -->
+            <td rowspan="5" style="background: #0f172a; color: #94a3b8; font-weight: 800; letter-spacing: 0.25em; writing-mode: vertical-lr; text-transform: uppercase; font-size: 0.85rem; padding: 1rem 0.5rem; border: 1px solid #475569;">
+              LUNCH BREAK (1:00 PM - 2:00 PM)
+            </td>
+            <td style="border: 1px solid #475569; padding: 0.5rem;">
+              <div style="background: rgba(236, 72, 153, 0.2); color: #f9a8d4; border: 1px solid rgba(236, 72, 153, 0.4); padding: 0.4rem 0.3rem; border-radius: 6px; font-weight: 600;">
+                <span style="font-size: 0.85rem; font-weight: 800; display: block;">CSIT242</span>
+                <span style="font-size: 0.75rem; opacity: 0.85; display: block;">Computer Networks &bull; R-408</span>
+                <span style="font-size: 0.7rem; text-transform: uppercase; display: block;">Lecture</span>
+              </div>
+            </td>
+            <td style="border: 1px solid #475569; padding: 0.5rem;">
+              <div style="background: rgba(245, 158, 11, 0.2); color: #fcd34d; border: 1px solid rgba(245, 158, 11, 0.4); padding: 0.4rem 0.3rem; border-radius: 6px; font-weight: 600;">
+                <span style="font-size: 0.85rem; font-weight: 800; display: block;">CSIT240</span>
+                <span style="font-size: 0.75rem; opacity: 0.85; display: block;">Operating Systems &bull; R-408</span>
+                <span style="font-size: 0.7rem; text-transform: uppercase; display: block;">Lecture</span>
+              </div>
+            </td>
+            <td style="border: 1px solid #475569; padding: 0.5rem;">
+              <div style="background: rgba(255, 255, 255, 0.04); color: #94a3b8; border: 1px solid #334155; padding: 0.4rem 0.3rem; border-radius: 6px; font-weight: 600;">
+                <span style="font-size: 0.85rem; font-weight: 800; display: block;">Library / Mentor</span>
+                <span style="font-size: 0.75rem; opacity: 0.85; display: block;">Central Library</span>
+                <span style="font-size: 0.7rem; text-transform: uppercase; display: block;">Self Study</span>
+              </div>
+            </td>
+          </tr>
+
+          <!-- TUESDAY -->
+          <tr>
+            <th style="background: #1e293b; color: #38bdf8; font-weight: 700; border: 1px solid #475569; padding: 0.75rem 0.5rem;">TUESDAY</th>
+            <td style="border: 1px solid #475569; padding: 0.5rem;">
+              <div style="background: rgba(245, 158, 11, 0.2); color: #fcd34d; border: 1px solid rgba(245, 158, 11, 0.4); padding: 0.4rem 0.3rem; border-radius: 6px; font-weight: 600;">
+                <span style="font-size: 0.85rem; font-weight: 800; display: block;">CSIT240</span>
+                <span style="font-size: 0.75rem; opacity: 0.85; display: block;">Operating Systems &bull; R-408</span>
+                <span style="font-size: 0.7rem; text-transform: uppercase; display: block;">Lecture</span>
+              </div>
+            </td>
+            <td style="border: 1px solid #475569; padding: 0.5rem;">
+              <div style="background: rgba(59, 130, 246, 0.2); color: #93c5fd; border: 1px solid rgba(59, 130, 246, 0.4); padding: 0.4rem 0.3rem; border-radius: 6px; font-weight: 600;">
+                <span style="font-size: 0.85rem; font-weight: 800; display: block;">CSIT248</span>
+                <span style="font-size: 0.75rem; opacity: 0.85; display: block;">Adv. Web Tech &bull; R-408</span>
+                <span style="font-size: 0.7rem; text-transform: uppercase; display: block;">Lecture</span>
+              </div>
+            </td>
+            <td style="border: 1px solid #475569; padding: 0.5rem;">
+              <div style="background: rgba(236, 72, 153, 0.2); color: #f9a8d4; border: 1px solid rgba(236, 72, 153, 0.4); padding: 0.4rem 0.3rem; border-radius: 6px; font-weight: 600;">
+                <span style="font-size: 0.85rem; font-weight: 800; display: block;">CSIT242</span>
+                <span style="font-size: 0.75rem; opacity: 0.85; display: block;">Computer Networks &bull; R-408</span>
+                <span style="font-size: 0.7rem; text-transform: uppercase; display: block;">Lecture</span>
+              </div>
+            </td>
+            <td style="border: 1px solid #475569; padding: 0.5rem;">
+              <div style="background: rgba(16, 185, 129, 0.2); color: #6ee7b7; border: 1px solid rgba(16, 185, 129, 0.4); padding: 0.4rem 0.3rem; border-radius: 6px; font-weight: 600;">
+                <span style="font-size: 0.85rem; font-weight: 800; display: block;">CSIT244</span>
+                <span style="font-size: 0.75rem; opacity: 0.85; display: block;">DBMS Theory &bull; R-408</span>
+                <span style="font-size: 0.7rem; text-transform: uppercase; display: block;">Lecture</span>
+              </div>
+            </td>
+            <td colspan="2" style="border: 1px solid #475569; padding: 0.5rem;">
+              <div style="background: rgba(6, 182, 212, 0.25); color: #67e8f9; border: 1px solid rgba(6, 182, 212, 0.5); padding: 0.4rem 0.3rem; border-radius: 6px; font-weight: 600;">
+                <span style="font-size: 0.85rem; font-weight: 800; display: block;">CSIT242 (Lab)</span>
+                <span style="font-size: 0.75rem; opacity: 0.85; display: block;">Network Simulation Lab &bull; Lab 105</span>
+                <span style="font-size: 0.7rem; text-transform: uppercase; display: block;">Practical (2 hrs)</span>
+              </div>
+            </td>
+            <td style="border: 1px solid #475569; padding: 0.5rem;">
+              <div style="background: rgba(139, 92, 246, 0.2); color: #c4b5fd; border: 1px solid rgba(139, 92, 246, 0.4); padding: 0.4rem 0.3rem; border-radius: 6px; font-weight: 600;">
+                <span style="font-size: 0.85rem; font-weight: 800; display: block;">MATH302</span>
+                <span style="font-size: 0.75rem; opacity: 0.85; display: block;">Tutorial &bull; R-408</span>
+                <span style="font-size: 0.7rem; text-transform: uppercase; display: block;">Tutorial</span>
+              </div>
+            </td>
+          </tr>
+
+          <!-- WEDNESDAY -->
+          <tr>
+            <th style="background: #1e293b; color: #38bdf8; font-weight: 700; border: 1px solid #475569; padding: 0.75rem 0.5rem;">WEDNESDAY</th>
+            <td style="border: 1px solid #475569; padding: 0.5rem;">
+              <div style="background: rgba(16, 185, 129, 0.2); color: #6ee7b7; border: 1px solid rgba(16, 185, 129, 0.4); padding: 0.4rem 0.3rem; border-radius: 6px; font-weight: 600;">
+                <span style="font-size: 0.85rem; font-weight: 800; display: block;">CSIT244</span>
+                <span style="font-size: 0.75rem; opacity: 0.85; display: block;">DBMS Theory &bull; R-408</span>
+                <span style="font-size: 0.7rem; text-transform: uppercase; display: block;">Lecture</span>
+              </div>
+            </td>
+            <td style="border: 1px solid #475569; padding: 0.5rem;">
+              <div style="background: rgba(236, 72, 153, 0.2); color: #f9a8d4; border: 1px solid rgba(236, 72, 153, 0.4); padding: 0.4rem 0.3rem; border-radius: 6px; font-weight: 600;">
+                <span style="font-size: 0.85rem; font-weight: 800; display: block;">CSIT242</span>
+                <span style="font-size: 0.75rem; opacity: 0.85; display: block;">Computer Networks &bull; R-408</span>
+                <span style="font-size: 0.7rem; text-transform: uppercase; display: block;">Lecture</span>
+              </div>
+            </td>
+            <td style="border: 1px solid #475569; padding: 0.5rem;">
+              <div style="background: rgba(139, 92, 246, 0.2); color: #c4b5fd; border: 1px solid rgba(139, 92, 246, 0.4); padding: 0.4rem 0.3rem; border-radius: 6px; font-weight: 600;">
+                <span style="font-size: 0.85rem; font-weight: 800; display: block;">MATH302</span>
+                <span style="font-size: 0.75rem; opacity: 0.85; display: block;">Discrete Math &bull; R-408</span>
+                <span style="font-size: 0.7rem; text-transform: uppercase; display: block;">Lecture</span>
+              </div>
+            </td>
+            <td style="border: 1px solid #475569; padding: 0.5rem;">
+              <div style="background: rgba(245, 158, 11, 0.2); color: #fcd34d; border: 1px solid rgba(245, 158, 11, 0.4); padding: 0.4rem 0.3rem; border-radius: 6px; font-weight: 600;">
+                <span style="font-size: 0.85rem; font-weight: 800; display: block;">CSIT240</span>
+                <span style="font-size: 0.75rem; opacity: 0.85; display: block;">Operating Systems &bull; R-408</span>
+                <span style="font-size: 0.7rem; text-transform: uppercase; display: block;">Lecture</span>
+              </div>
+            </td>
+            <td colspan="2" style="border: 1px solid #475569; padding: 0.5rem;">
+              <div style="background: rgba(6, 182, 212, 0.25); color: #67e8f9; border: 1px solid rgba(6, 182, 212, 0.5); padding: 0.4rem 0.3rem; border-radius: 6px; font-weight: 600;">
+                <span style="font-size: 0.85rem; font-weight: 800; display: block;">CSIT248 (Lab)</span>
+                <span style="font-size: 0.75rem; opacity: 0.85; display: block;">Adv. Web Tech Lab &bull; Lab 302</span>
+                <span style="font-size: 0.7rem; text-transform: uppercase; display: block;">Practical (2 hrs)</span>
+              </div>
+            </td>
+            <td style="border: 1px solid #475569; padding: 0.5rem;">
+              <div style="background: rgba(255, 255, 255, 0.04); color: #94a3b8; border: 1px solid #334155; padding: 0.4rem 0.3rem; border-radius: 6px; font-weight: 600;">
+                <span style="font-size: 0.85rem; font-weight: 800; display: block;">Club Activities</span>
+                <span style="font-size: 0.75rem; opacity: 0.85; display: block;">Student Center</span>
+                <span style="font-size: 0.7rem; text-transform: uppercase; display: block;">Co-Curricular</span>
+              </div>
+            </td>
+          </tr>
+
+          <!-- THURSDAY -->
+          <tr>
+            <th style="background: #1e293b; color: #38bdf8; font-weight: 700; border: 1px solid #475569; padding: 0.75rem 0.5rem;">THURSDAY</th>
+            <td style="border: 1px solid #475569; padding: 0.5rem;">
+              <div style="background: rgba(59, 130, 246, 0.2); color: #93c5fd; border: 1px solid rgba(59, 130, 246, 0.4); padding: 0.4rem 0.3rem; border-radius: 6px; font-weight: 600;">
+                <span style="font-size: 0.85rem; font-weight: 800; display: block;">CSIT248</span>
+                <span style="font-size: 0.75rem; opacity: 0.85; display: block;">Adv. Web Tech &bull; R-408</span>
+                <span style="font-size: 0.7rem; text-transform: uppercase; display: block;">Lecture</span>
+              </div>
+            </td>
+            <td style="border: 1px solid #475569; padding: 0.5rem;">
+              <div style="background: rgba(16, 185, 129, 0.2); color: #6ee7b7; border: 1px solid rgba(16, 185, 129, 0.4); padding: 0.4rem 0.3rem; border-radius: 6px; font-weight: 600;">
+                <span style="font-size: 0.85rem; font-weight: 800; display: block;">CSIT244</span>
+                <span style="font-size: 0.75rem; opacity: 0.85; display: block;">DBMS Theory &bull; R-408</span>
+                <span style="font-size: 0.7rem; text-transform: uppercase; display: block;">Lecture</span>
+              </div>
+            </td>
+            <td colspan="2" style="border: 1px solid #475569; padding: 0.5rem;">
+              <div style="background: rgba(6, 182, 212, 0.25); color: #67e8f9; border: 1px solid rgba(6, 182, 212, 0.5); padding: 0.4rem 0.3rem; border-radius: 6px; font-weight: 600;">
+                <span style="font-size: 0.85rem; font-weight: 800; display: block;">CSIT240 (Lab)</span>
+                <span style="font-size: 0.75rem; opacity: 0.85; display: block;">Linux / OS Lab &bull; Lab 208</span>
+                <span style="font-size: 0.7rem; text-transform: uppercase; display: block;">Practical (2 hrs)</span>
+              </div>
+            </td>
+            <td style="border: 1px solid #475569; padding: 0.5rem;">
+              <div style="background: rgba(139, 92, 246, 0.2); color: #c4b5fd; border: 1px solid rgba(139, 92, 246, 0.4); padding: 0.4rem 0.3rem; border-radius: 6px; font-weight: 600;">
+                <span style="font-size: 0.85rem; font-weight: 800; display: block;">MATH302</span>
+                <span style="font-size: 0.75rem; opacity: 0.85; display: block;">Discrete Math &bull; R-408</span>
+                <span style="font-size: 0.7rem; text-transform: uppercase; display: block;">Lecture</span>
+              </div>
+            </td>
+            <td style="border: 1px solid #475569; padding: 0.5rem;">
+              <div style="background: rgba(236, 72, 153, 0.2); color: #f9a8d4; border: 1px solid rgba(236, 72, 153, 0.4); padding: 0.4rem 0.3rem; border-radius: 6px; font-weight: 600;">
+                <span style="font-size: 0.85rem; font-weight: 800; display: block;">CSIT242</span>
+                <span style="font-size: 0.75rem; opacity: 0.85; display: block;">Computer Networks &bull; R-408</span>
+                <span style="font-size: 0.7rem; text-transform: uppercase; display: block;">Lecture</span>
+              </div>
+            </td>
+            <td style="border: 1px solid #475569; padding: 0.5rem;">
+              <div style="background: rgba(99, 102, 241, 0.15); color: #c7d2fe; border: 1px solid rgba(99, 102, 241, 0.3); padding: 0.4rem 0.3rem; border-radius: 6px; font-weight: 600;">
+                <span style="font-size: 0.85rem; font-weight: 800; display: block;">PSDA Seminar</span>
+                <span style="font-size: 0.75rem; opacity: 0.85; display: block;">Auditorium 2</span>
+                <span style="font-size: 0.7rem; text-transform: uppercase; display: block;">Presentation</span>
+              </div>
+            </td>
+          </tr>
+
+          <!-- FRIDAY -->
+          <tr>
+            <th style="background: #1e293b; color: #38bdf8; font-weight: 700; border: 1px solid #475569; padding: 0.75rem 0.5rem;">FRIDAY</th>
+            <td style="border: 1px solid #475569; padding: 0.5rem;">
+              <div style="background: rgba(245, 158, 11, 0.2); color: #fcd34d; border: 1px solid rgba(245, 158, 11, 0.4); padding: 0.4rem 0.3rem; border-radius: 6px; font-weight: 600;">
+                <span style="font-size: 0.85rem; font-weight: 800; display: block;">CSIT240</span>
+                <span style="font-size: 0.75rem; opacity: 0.85; display: block;">Operating Systems &bull; R-408</span>
+                <span style="font-size: 0.7rem; text-transform: uppercase; display: block;">Lecture</span>
+              </div>
+            </td>
+            <td style="border: 1px solid #475569; padding: 0.5rem;">
+              <div style="background: rgba(139, 92, 246, 0.2); color: #c4b5fd; border: 1px solid rgba(139, 92, 246, 0.4); padding: 0.4rem 0.3rem; border-radius: 6px; font-weight: 600;">
+                <span style="font-size: 0.85rem; font-weight: 800; display: block;">MATH302</span>
+                <span style="font-size: 0.75rem; opacity: 0.85; display: block;">Discrete Math &bull; R-408</span>
+                <span style="font-size: 0.7rem; text-transform: uppercase; display: block;">Lecture</span>
+              </div>
+            </td>
+            <td style="border: 1px solid #475569; padding: 0.5rem;">
+              <div style="background: rgba(59, 130, 246, 0.2); color: #93c5fd; border: 1px solid rgba(59, 130, 246, 0.4); padding: 0.4rem 0.3rem; border-radius: 6px; font-weight: 600;">
+                <span style="font-size: 0.85rem; font-weight: 800; display: block;">CSIT248</span>
+                <span style="font-size: 0.75rem; opacity: 0.85; display: block;">Adv. Web Tech &bull; R-408</span>
+                <span style="font-size: 0.7rem; text-transform: uppercase; display: block;">Lecture</span>
+              </div>
+            </td>
+            <td style="border: 1px solid #475569; padding: 0.5rem;">
+              <div style="background: rgba(16, 185, 129, 0.2); color: #6ee7b7; border: 1px solid rgba(16, 185, 129, 0.4); padding: 0.4rem 0.3rem; border-radius: 6px; font-weight: 600;">
+                <span style="font-size: 0.85rem; font-weight: 800; display: block;">CSIT244</span>
+                <span style="font-size: 0.75rem; opacity: 0.85; display: block;">DBMS Theory &bull; R-408</span>
+                <span style="font-size: 0.7rem; text-transform: uppercase; display: block;">Lecture</span>
+              </div>
+            </td>
+            <td colspan="2" style="border: 1px solid #475569; padding: 0.5rem;">
+              <div style="background: rgba(245, 158, 11, 0.15); color: #fde68a; border: 1px solid rgba(245, 158, 11, 0.3); padding: 0.4rem 0.3rem; border-radius: 6px; font-weight: 600;">
+                <span style="font-size: 0.85rem; font-weight: 800; display: block;">Capstone Project</span>
+                <span style="font-size: 0.75rem; opacity: 0.85; display: block;">Incubation Lab &bull; Lab 401</span>
+                <span style="font-size: 0.7rem; text-transform: uppercase; display: block;">Project Work (2 hrs)</span>
+              </div>
+            </td>
+            <td style="border: 1px solid #475569; padding: 0.5rem;">
+              <div style="background: rgba(16, 185, 129, 0.15); color: #a7f3d0; border: 1px solid rgba(16, 185, 129, 0.3); padding: 0.4rem 0.3rem; border-radius: 6px; font-weight: 600;">
+                <span style="font-size: 0.85rem; font-weight: 800; display: block;">Sports &amp; Fitness</span>
+                <span style="font-size: 0.75rem; opacity: 0.85; display: block;">Sports Complex</span>
+                <span style="font-size: 0.7rem; text-transform: uppercase; display: block;">Extracurricular</span>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="9" style="background: #111827; color: #94a3b8; font-size: 0.8rem; padding: 0.75rem 1rem; text-align: left; border: 1px solid #475569;">
+              &bull; <strong>Note:</strong> Practical lab sessions are of 2 consecutive hours. Attendance is mandatory (minimum 75% as per university criteria).
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <!-- Course & Faculty Legend Table (Inline CSS) -->
+    <section style="background: #1e293b; border: 1px solid #334155; border-radius: 14px; padding: 1.75rem; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);">
+      <h2 style="font-size: 1.25rem; font-weight: 700; color: #ffffff; margin: 0 0 1rem 0; border-bottom: 2px solid #334155; padding-bottom: 0.5rem;">
+        Subject &amp; Faculty Legend
+      </h2>
+      <div style="overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem;">
+          <thead>
+            <tr style="background: rgba(255, 255, 255, 0.04); color: #a5b4fc; border-bottom: 1px solid #334155;">
+              <th style="padding: 0.75rem 1rem;">Color</th>
+              <th style="padding: 0.75rem 1rem;">Course Code</th>
+              <th style="padding: 0.75rem 1rem;">Course Title</th>
+              <th style="padding: 0.75rem 1rem;">Faculty Name</th>
+              <th style="padding: 0.75rem 1rem;">Credits (L-T-P)</th>
+              <th style="padding: 0.75rem 1rem;">Venue</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid #334155;">
+              <td style="padding: 0.75rem 1rem;"><span style="display: inline-block; width: 12px; height: 12px; border-radius: 3px; background: #3b82f6;"></span></td>
+              <td style="padding: 0.75rem 1rem; color: #ffffff; font-weight: 700;">CSIT248</td>
+              <td style="padding: 0.75rem 1rem; color: #cbd5e1;">Advanced Web Technology</td>
+              <td style="padding: 0.75rem 1rem; color: #cbd5e1;">Dr. V. Sharma / Prof. R. Verma</td>
+              <td style="padding: 0.75rem 1rem; color: #cbd5e1;">2-0-2 (6 Units)</td>
+              <td style="padding: 0.75rem 1rem; color: #38bdf8;">Room 408 / Lab 302</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #334155; background: rgba(255, 255, 255, 0.015);">
+              <td style="padding: 0.75rem 1rem;"><span style="display: inline-block; width: 12px; height: 12px; border-radius: 3px; background: #10b981;"></span></td>
+              <td style="padding: 0.75rem 1rem; color: #ffffff; font-weight: 700;">CSIT244</td>
+              <td style="padding: 0.75rem 1rem; color: #cbd5e1;">Database Management Systems</td>
+              <td style="padding: 0.75rem 1rem; color: #cbd5e1;">Dr. P. Gupta</td>
+              <td style="padding: 0.75rem 1rem; color: #cbd5e1;">3-0-2 (5 Units)</td>
+              <td style="padding: 0.75rem 1rem; color: #38bdf8;">Room 408 / Lab 204</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #334155;">
+              <td style="padding: 0.75rem 1rem;"><span style="display: inline-block; width: 12px; height: 12px; border-radius: 3px; background: #f59e0b;"></span></td>
+              <td style="padding: 0.75rem 1rem; color: #ffffff; font-weight: 700;">CSIT240</td>
+              <td style="padding: 0.75rem 1rem; color: #cbd5e1;">Operating Systems</td>
+              <td style="padding: 0.75rem 1rem; color: #cbd5e1;">Prof. A. K. Singh</td>
+              <td style="padding: 0.75rem 1rem; color: #cbd5e1;">3-0-2 (5 Units)</td>
+              <td style="padding: 0.75rem 1rem; color: #38bdf8;">Room 408 / Lab 208</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #334155; background: rgba(255, 255, 255, 0.015);">
+              <td style="padding: 0.75rem 1rem;"><span style="display: inline-block; width: 12px; height: 12px; border-radius: 3px; background: #ec4899;"></span></td>
+              <td style="padding: 0.75rem 1rem; color: #ffffff; font-weight: 700;">CSIT242</td>
+              <td style="padding: 0.75rem 1rem; color: #cbd5e1;">Computer Networks</td>
+              <td style="padding: 0.75rem 1rem; color: #cbd5e1;">Dr. S. Nair</td>
+              <td style="padding: 0.75rem 1rem; color: #cbd5e1;">3-0-2 (5 Units)</td>
+              <td style="padding: 0.75rem 1rem; color: #38bdf8;">Room 408 / Lab 105</td>
+            </tr>
+            <tr>
+              <td style="padding: 0.75rem 1rem;"><span style="display: inline-block; width: 12px; height: 12px; border-radius: 3px; background: #8b5cf6;"></span></td>
+              <td style="padding: 0.75rem 1rem; color: #ffffff; font-weight: 700;">MATH302</td>
+              <td style="padding: 0.75rem 1rem; color: #cbd5e1;">Discrete Mathematical Structures</td>
+              <td style="padding: 0.75rem 1rem; color: #cbd5e1;">Prof. K. Raman</td>
+              <td style="padding: 0.75rem 1rem; color: #cbd5e1;">3-1-0 (4 Units)</td>
+              <td style="padding: 0.75rem 1rem; color: #38bdf8;">Room 408</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer (Inline CSS) -->
+  <footer style="background: #090d16; border-top: 1px solid #1e293b; padding: 2rem 1.5rem; text-align: center; color: #94a3b8; font-size: 0.875rem; margin-top: 3rem;">
+    <p style="margin: 0 0 0.5rem 0;">Experiment 03 &bull; CSIT248 Advanced Web Technology &bull; Table &amp; Layout Demonstration</p>
+    <p style="margin: 0 0 0.75rem 0; color: #64748b; font-size: 0.8rem;">Formatted using 100% Inline CSS properties.</p>
+    <p style="margin: 0;"><a href="../index.html" style="color: #818cf8; text-decoration: none; font-weight: 600;">&uarr; Back to Lab Work Portal</a></p>
+  </footer>
+
+</body>
+</html>

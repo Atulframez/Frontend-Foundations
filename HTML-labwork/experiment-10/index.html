@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Experiment 10: Create a DHTML form for the dynamic use of records in a web form - CSIT248 Advanced Web Technology">
+  <title>Experiment 10 - DHTML Dynamic Records Form (Inline CSS)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body style="margin: 0; padding: 0; font-family: 'Inter', system-ui, -apple-system, sans-serif; background-color: #0f172a; color: #f8fafc; line-height: 1.6; min-height: 100vh;">
+
+  <!-- Navigation (Inline CSS) -->
+  <nav style="position: sticky; top: 0; z-index: 100; background: rgba(15, 23, 42, 0.92); backdrop-filter: blur(12px); border-bottom: 1px solid #334155; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center;">
+    <a href="../index.html" style="font-weight: 800; font-size: 1.2rem; color: #818cf8; text-decoration: none; display: flex; align-items: center; gap: 0.5rem;">
+      <span style="background: rgba(99, 102, 241, 0.15); border: 1px solid rgba(99, 102, 241, 0.3); padding: 0.2rem 0.5rem; border-radius: 6px;">&larr;</span>
+      CSIT248 Lab Work
+    </a>
+    <div style="display: flex; gap: 1rem; align-items: center;">
+      <span style="font-size: 0.8rem; background: rgba(99, 102, 241, 0.12); color: #a5b4fc; border: 1px solid rgba(99, 102, 241, 0.25); padding: 0.3rem 0.75rem; border-radius: 9999px; font-weight: 600;">
+        Formatted Exclusively with Inline CSS
+      </span>
+      <a href="../index.html" style="background: #6366f1; color: #ffffff; padding: 0.4rem 0.9rem; border-radius: 6px; text-decoration: none; font-size: 0.85rem; font-weight: 600;">
+        All Experiments
+      </a>
+    </div>
+  </nav>
+
+  <main style="max-width: 1200px; margin: 0 auto; padding: 2.5rem 1.5rem;">
+
+    <!-- Header (Inline CSS) -->
+    <header style="text-align: center; margin-bottom: 2rem;">
+      <div style="display: inline-block; background: rgba(99, 102, 241, 0.15); color: #a5b4fc; border: 1px solid rgba(99, 102, 241, 0.3); padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.75rem;">
+        Experiment 10 &bull; Module IV &amp; V (DHTML &amp; Dynamic DOM Manipulation)
+      </div>
+      <h1 style="font-size: 2.25rem; font-weight: 800; color: #ffffff; margin: 0 0 0.5rem 0;">DHTML Dynamic Records Management Form</h1>
+      <p style="color: #94a3b8; font-size: 1.05rem; margin: 0;">Add, Edit, Delete, and Calculate dynamic student academic records directly in the DOM</p>
+    </header>
+
+    <!-- Layout: Form + Records Grid (Inline CSS) -->
+    <div style="display: grid; grid-template-columns: 360px 1fr; gap: 1.75rem; margin-bottom: 2.5rem;">
+
+      <!-- Left Panel: Record Entry Form (Inline CSS) -->
+      <section style="background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 1.75rem; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); height: fit-content;">
+        <h2 style="font-size: 1.25rem; font-weight: 700; color: #38bdf8; margin: 0 0 1.25rem 0; border-bottom: 1px solid #334155; padding-bottom: 0.5rem;">
+          ➕ Add New Record (DHTML)
+        </h2>
+
+        <form id="record-form" onsubmit="addRecord(event)">
+          
+          <div style="margin-bottom: 1rem;">
+            <label for="rec-name" style="display: block; font-size: 0.85rem; font-weight: 600; color: #cbd5e1; margin-bottom: 0.35rem;">Student Name *</label>
+            <input type="text" id="rec-name" required placeholder="e.g. Atul Anand" style="width: 100%; box-sizing: border-box; background: #0f172a; border: 1px solid #475569; color: #ffffff; padding: 0.65rem 0.85rem; border-radius: 6px; font-size: 0.9rem; outline: none;">
+          </div>
+
+          <div style="margin-bottom: 1rem;">
+            <label for="rec-enroll" style="display: block; font-size: 0.85rem; font-weight: 600; color: #cbd5e1; margin-bottom: 0.35rem;">Enrollment ID *</label>
+            <input type="text" id="rec-enroll" required placeholder="e.g. A2305221001" style="width: 100%; box-sizing: border-box; background: #0f172a; border: 1px solid #475569; color: #ffffff; padding: 0.65rem 0.85rem; border-radius: 6px; font-size: 0.9rem; outline: none;">
+          </div>
+
+          <div style="margin-bottom: 1rem;">
+            <label for="rec-subject" style="display: block; font-size: 0.85rem; font-weight: 600; color: #cbd5e1; margin-bottom: 0.35rem;">Subject Course *</label>
+            <select id="rec-subject" required style="width: 100%; box-sizing: border-box; background: #0f172a; border: 1px solid #475569; color: #ffffff; padding: 0.65rem 0.85rem; border-radius: 6px; font-size: 0.9rem; outline: none;">
+              <option value="CSIT248 (Adv. Web Tech)">CSIT248 (Adv. Web Tech)</option>
+              <option value="CSIT244 (DBMS)">CSIT244 (DBMS)</option>
+              <option value="CSIT240 (OS)">CSIT240 (OS)</option>
+              <option value="CSIT242 (CN)">CSIT242 (CN)</option>
+              <option value="MATH302 (Math)">MATH302 (Math)</option>
+            </select>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+            <div>
+              <label for="rec-marks" style="display: block; font-size: 0.85rem; font-weight: 600; color: #cbd5e1; margin-bottom: 0.35rem;">Marks (0-100) *</label>
+              <input type="number" id="rec-marks" min="0" max="100" required placeholder="95" style="width: 100%; box-sizing: border-box; background: #0f172a; border: 1px solid #475569; color: #ffffff; padding: 0.65rem 0.85rem; border-radius: 6px; font-size: 0.9rem; outline: none;">
+            </div>
+
+            <div>
+              <label for="rec-attendance" style="display: block; font-size: 0.85rem; font-weight: 600; color: #cbd5e1; margin-bottom: 0.35rem;">Attendance % *</label>
+              <input type="number" id="rec-attendance" min="0" max="100" required placeholder="92" style="width: 100%; box-sizing: border-box; background: #0f172a; border: 1px solid #475569; color: #ffffff; padding: 0.65rem 0.85rem; border-radius: 6px; font-size: 0.9rem; outline: none;">
+            </div>
+          </div>
+
+          <button type="submit" style="width: 100%; background: #6366f1; color: #ffffff; border: 1px solid #6366f1; padding: 0.75rem; border-radius: 8px; font-weight: 700; font-size: 0.95rem; cursor: pointer; box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);">
+            ➕ Insert Record to Table
+          </button>
+        </form>
+      </section>
+
+      <!-- Right Panel: Dynamic DHTML Table & Stats (Inline CSS) -->
+      <section style="background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 1.75rem; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); display: flex; flex-direction: column;">
+        
+        <!-- Top Stats Summary Bar -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 0.75rem; margin-bottom: 1.25rem;">
+          <div style="background: #0f172a; border: 1px solid #334155; padding: 0.75rem; border-radius: 8px; text-align: center;">
+            <span style="font-size: 0.75rem; color: #94a3b8; display: block;">Total Records</span>
+            <strong id="stat-count" style="font-size: 1.25rem; color: #38bdf8;">3</strong>
+          </div>
+          <div style="background: #0f172a; border: 1px solid #334155; padding: 0.75rem; border-radius: 8px; text-align: center;">
+            <span style="font-size: 0.75rem; color: #94a3b8; display: block;">Avg Marks</span>
+            <strong id="stat-avg" style="font-size: 1.25rem; color: #34d399;">92.3%</strong>
+          </div>
+          <div style="background: #0f172a; border: 1px solid #334155; padding: 0.75rem; border-radius: 8px; text-align: center;">
+            <span style="font-size: 0.75rem; color: #94a3b8; display: block;">Highest Score</span>
+            <strong id="stat-high" style="font-size: 1.25rem; color: #fbbf24;">96/100</strong>
+          </div>
+        </div>
+
+        <!-- Search input for dynamic filter -->
+        <div style="margin-bottom: 1rem;">
+          <input 
+            type="text" 
+            id="filter-input" 
+            placeholder="🔍 Filter records dynamically by name or subject..." 
+            onkeyup="filterRecords()" 
+            style="width: 100%; box-sizing: border-box; background: #0f172a; border: 1px solid #475569; color: #ffffff; padding: 0.6rem 1rem; border-radius: 8px; font-size: 0.85rem; outline: none;"
+          >
+        </div>
+
+        <!-- Dynamic Table -->
+        <div style="overflow-x: auto; flex-grow: 1;">
+          <table id="records-table" style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem;">
+            <thead>
+              <tr style="background: #1e1b4b; color: #cbd5e1; font-size: 0.8rem; text-transform: uppercase; border-bottom: 1px solid #334155;">
+                <th style="padding: 0.75rem 1rem;">#</th>
+                <th style="padding: 0.75rem 1rem;">Student Name</th>
+                <th style="padding: 0.75rem 1rem;">Enrollment</th>
+                <th style="padding: 0.75rem 1rem;">Subject</th>
+                <th style="padding: 0.75rem 1rem;">Marks</th>
+                <th style="padding: 0.75rem 1rem;">Attendance</th>
+                <th style="padding: 0.75rem 1rem; text-align: center;">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="records-body">
+              <!-- Default sample rows -->
+              <tr style="border-bottom: 1px solid #334155;">
+                <td style="padding: 0.75rem 1rem; color: #94a3b8;">1</td>
+                <td style="padding: 0.75rem 1rem; font-weight: 600; color: #ffffff;">Atul Anand</td>
+                <td style="padding: 0.75rem 1rem; color: #cbd5e1; font-family: monospace;">A2305221001</td>
+                <td style="padding: 0.75rem 1rem; color: #38bdf8;">CSIT248 (Adv. Web Tech)</td>
+                <td style="padding: 0.75rem 1rem; font-weight: 700; color: #34d399;">96</td>
+                <td style="padding: 0.75rem 1rem; color: #cbd5e1;">95%</td>
+                <td style="padding: 0.75rem 1rem; text-align: center;">
+                  <button onclick="deleteRow(this)" style="background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); padding: 0.3rem 0.6rem; border-radius: 4px; font-size: 0.75rem; cursor: pointer;">Delete</button>
+                </td>
+              </tr>
+              <tr style="border-bottom: 1px solid #334155; background: rgba(255, 255, 255, 0.015);">
+                <td style="padding: 0.75rem 1rem; color: #94a3b8;">2</td>
+                <td style="padding: 0.75rem 1rem; font-weight: 600; color: #ffffff;">Rohan Sharma</td>
+                <td style="padding: 0.75rem 1rem; color: #cbd5e1; font-family: monospace;">A2305221002</td>
+                <td style="padding: 0.75rem 1rem; color: #38bdf8;">CSIT244 (DBMS)</td>
+                <td style="padding: 0.75rem 1rem; font-weight: 700; color: #34d399;">88</td>
+                <td style="padding: 0.75rem 1rem; color: #cbd5e1;">89%</td>
+                <td style="padding: 0.75rem 1rem; text-align: center;">
+                  <button onclick="deleteRow(this)" style="background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); padding: 0.3rem 0.6rem; border-radius: 4px; font-size: 0.75rem; cursor: pointer;">Delete</button>
+                </td>
+              </tr>
+              <tr style="border-bottom: 1px solid #334155;">
+                <td style="padding: 0.75rem 1rem; color: #94a3b8;">3</td>
+                <td style="padding: 0.75rem 1rem; font-weight: 600; color: #ffffff;">Priya Verma</td>
+                <td style="padding: 0.75rem 1rem; color: #cbd5e1; font-family: monospace;">A2305221003</td>
+                <td style="padding: 0.75rem 1rem; color: #38bdf8;">CSIT240 (OS)</td>
+                <td style="padding: 0.75rem 1rem; font-weight: 700; color: #34d399;">93</td>
+                <td style="padding: 0.75rem 1rem; color: #cbd5e1;">91%</td>
+                <td style="padding: 0.75rem 1rem; text-align: center;">
+                  <button onclick="deleteRow(this)" style="background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); padding: 0.3rem 0.6rem; border-radius: 4px; font-size: 0.75rem; cursor: pointer;">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- DHTML JavaScript Logic -->
+  <script>
+    let recordsData = [
+      { name: 'Atul Anand', enroll: 'A2305221001', subject: 'CSIT248 (Adv. Web Tech)', marks: 96, attendance: 95 },
+      { name: 'Rohan Sharma', enroll: 'A2305221002', subject: 'CSIT244 (DBMS)', marks: 88, attendance: 89 },
+      { name: 'Priya Verma', enroll: 'A2305221003', subject: 'CSIT240 (OS)', marks: 93, attendance: 91 }
+    ];
+
+    function renderTable() {
+      const tbody = document.getElementById('records-body');
+      tbody.innerHTML = '';
+
+      let totalMarks = 0;
+      let highest = 0;
+
+      recordsData.forEach((rec, idx) => {
+        totalMarks += rec.marks;
+        if (rec.marks > highest) highest = rec.marks;
+
+        const tr = document.createElement('tr');
+        tr.style.borderBottom = '1px solid #334155';
+        if (idx % 2 === 1) tr.style.background = 'rgba(255, 255, 255, 0.015)';
+
+        tr.innerHTML = `
+          <td style="padding: 0.75rem 1rem; color: #94a3b8;">${idx + 1}</td>
+          <td style="padding: 0.75rem 1rem; font-weight: 600; color: #ffffff;">${rec.name}</td>
+          <td style="padding: 0.75rem 1rem; color: #cbd5e1; font-family: monospace;">${rec.enroll}</td>
+          <td style="padding: 0.75rem 1rem; color: #38bdf8;">${rec.subject}</td>
+          <td style="padding: 0.75rem 1rem; font-weight: 700; color: #34d399;">${rec.marks}</td>
+          <td style="padding: 0.75rem 1rem; color: #cbd5e1;">${rec.attendance}%</td>
+          <td style="padding: 0.75rem 1rem; text-align: center;">
+            <button onclick="removeRecord(${idx})" style="background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); padding: 0.3rem 0.6rem; border-radius: 4px; font-size: 0.75rem; cursor: pointer;">Delete</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      // Update DHTML stats
+      const count = recordsData.length;
+      document.getElementById('stat-count').textContent = count;
+      document.getElementById('stat-avg').textContent = count > 0 ? (totalMarks / count).toFixed(1) + '%' : '0%';
+      document.getElementById('stat-high').textContent = count > 0 ? `${highest}/100` : '--';
+    }
+
+    function addRecord(e) {
+      e.preventDefault();
+      const name = document.getElementById('rec-name').value.trim();
+      const enroll = document.getElementById('rec-enroll').value.trim();
+      const subject = document.getElementById('rec-subject').value;
+      const marks = parseInt(document.getElementById('rec-marks').value, 10);
+      const attendance = parseInt(document.getElementById('rec-attendance').value, 10);
+
+      recordsData.push({ name, enroll, subject, marks, attendance });
+      renderTable();
+      document.getElementById('record-form').reset();
+    }
+
+    function removeRecord(index) {
+      recordsData.splice(index, 1);
+      renderTable();
+    }
+
+    function filterRecords() {
+      const query = document.getElementById('filter-input').value.toLowerCase();
+      const rows = document.querySelectorAll('#records-body tr');
+
+      rows.forEach(row => {
+        const text = row.textContent.toLowerCase();
+        if (text.includes(query)) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    }
+
+    // Initial render
+    renderTable();
+  </script>
+
+  <!-- Footer (Inline CSS) -->
+  <footer style="background: #090d16; border-top: 1px solid #1e293b; padding: 2rem 1.5rem; text-align: center; color: #94a3b8; font-size: 0.875rem; margin-top: 3rem;">
+    <p style="margin: 0 0 0.5rem 0;">Experiment 10 &bull; CSIT248 Advanced Web Technology &bull; DHTML Dynamic Records Form</p>
+    <p style="margin: 0 0 0.75rem 0; color: #64748b; font-size: 0.8rem;">Amity University Noida &bull; Formatted using 100% Inline CSS</p>
+    <p style="margin: 0;"><a href="../index.html" style="color: #818cf8; text-decoration: none; font-weight: 600;">&uarr; Back to Lab Work Portal</a></p>
+  </footer>
+
+</body>
+</html>

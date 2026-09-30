@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  Experiment 13: Student Academic Database XML
+  Course: Advanced Web Technology (CSIT248) - Sem VI IT
+  Amity University Noida
+  Contains records of 10 students with 5 subject marks, total marks, percentage, and grade.
+-->
+<students_database semester="VI" branch="Information Technology" academic_year="2025-2026">
+  
+  <!-- Student 1 -->
+  <student id="1">
+    <enrollment_no>IT2023001</enrollment_no>
+    <name>Atul Anand</name>
+    <semester>VI IT</semester>
+    <academic_batch>2023-2026</academic_batch>
+    <marks>
+      <subject code="IT601" name="Cloud Computing" max="100">92</subject>
+      <subject code="IT602" name="Information &amp; Network Security" max="100">88</subject>
+      <subject code="IT603" name="Software Engineering &amp; Agile" max="100">94</subject>
+      <subject code="IT604" name="Data Mining &amp; Business Intelligence" max="100">90</subject>
+      <subject code="IT605" name="Mobile Computing &amp; IoT" max="100">96</subject>
+    </marks>
+    <total_marks max="500">460</total_marks>
+    <percentage>92.00</percentage>
+    <grade>A+</grade>
+    <result>PASS</result>
+  </student>
+
+  <!-- Student 2 -->
+  <student id="2">
+    <enrollment_no>IT2023002</enrollment_no>
+    <name>Priya Sharma</name>
+    <semester>VI IT</semester>
+    <academic_batch>2023-2026</academic_batch>
+    <marks>
+      <subject code="IT601" name="Cloud Computing" max="100">85</subject>
+      <subject code="IT602" name="Information &amp; Network Security" max="100">79</subject>
+      <subject code="IT603" name="Software Engineering &amp; Agile" max="100">88</subject>
+      <subject code="IT604" name="Data Mining &amp; Business Intelligence" max="100">82</subject>
+      <subject code="IT605" name="Mobile Computing &amp; IoT" max="100">91</subject>
+    </marks>
+    <total_marks max="500">425</total_marks>
+    <percentage>85.00</percentage>
+    <grade>A</grade>
+    <result>PASS</result>
+  </student>
+
+  <!-- Student 3 -->
+  <student id="3">
+    <enrollment_no>IT2023003</enrollment_no>
+    <name>Rohan Verma</name>
+    <semester>VI IT</semester>
+    <academic_batch>2023-2026</academic_batch>
+    <marks>
+      <subject code="IT601" name="Cloud Computing" max="100">78</subject>
+      <subject code="IT602" name="Information &amp; Network Security" max="100">84</subject>
+      <subject code="IT603" name="Software Engineering &amp; Agile" max="100">76</subject>
+      <subject code="IT604" name="Data Mining &amp; Business Intelligence" max="100">80</subject>
+      <subject code="IT605" name="Mobile Computing &amp; IoT" max="100">82</subject>
+    </marks>
+    <total_marks max="500">400</total_marks>
+    <percentage>80.00</percentage>
+    <grade>A</grade>
+    <result>PASS</result>
+  </student>
+
+  <!-- Student 4 -->
+  <student id="4">
+    <enrollment_no>IT2023004</enrollment_no>
+    <name>Ananya Sengupta</name>
+    <semester>VI IT</semester>
+    <academic_batch>2023-2026</academic_batch>
+    <marks>
+      <subject code="IT601" name="Cloud Computing" max="100">95</subject>
+      <subject code="IT602" name="Information &amp; Network Security" max="100">91</subject>
+      <subject code="IT603" name="Software Engineering &amp; Agile" max="100">96</subject>
+      <subject code="IT604" name="Data Mining &amp; Business Intelligence" max="100">94</subject>
+      <subject code="IT605" name="Mobile Computing &amp; IoT" max="100">98</subject>
+    </marks>
+    <total_marks max="500">474</total_marks>
+    <percentage>94.80</percentage>
+    <grade>A+</grade>
+    <result>PASS</result>
+  </student>
+
+  <!-- Student 5 -->
+  <student id="5">
+    <enrollment_no>IT2023005</enrollment_no>
+    <name>Vikramaditya Rao</name>
+    <semester>VI IT</semester>
+    <academic_batch>2023-2026</academic_batch>
+    <marks>
+      <subject code="IT601" name="Cloud Computing" max="100">70</subject>
+      <subject code="IT602" name="Information &amp; Network Security" max="100">68</subject>
+      <subject code="IT603" name="Software Engineering &amp; Agile" max="100">74</subject>
+      <subject code="IT604" name="Data Mining &amp; Business Intelligence" max="100">72</subject>
+      <subject code="IT605" name="Mobile Computing &amp; IoT" max="100">76</subject>
+    </marks>
+    <total_marks max="500">360</total_marks>
+    <percentage>72.00</percentage>
+    <grade>B+</grade>
+    <result>PASS</result>
+  </student>
+
+  <!-- Student 6 -->
+  <student id="6">
+    <enrollment_no>IT2023006</enrollment_no>
+    <name>Sneha Kulkarni</name>
+    <semester>VI IT</semester>
+    <academic_batch>2023-2026</academic_batch>
+    <marks>
+      <subject code="IT601" name="Cloud Computing" max="100">89</subject>
+      <subject code="IT602" name="Information &amp; Network Security" max="100">86</subject>
+      <subject code="IT603" name="Software Engineering &amp; Agile" max="100">91</subject>
+      <subject code="IT604" name="Data Mining &amp; Business Intelligence" max="100">88</subject>
+      <subject code="IT605" name="Mobile Computing &amp; IoT" max="100">93</subject>
+    </marks>
+    <total_marks max="500">447</total_marks>
+    <percentage>89.40</percentage>
+    <grade>A</grade>
+    <result>PASS</result>
+  </student>
+
+  <!-- Student 7 -->
+  <student id="7">
+    <enrollment_no>IT2023007</enrollment_no>
+    <name>Arjun Nair</name>
+    <semester>VI IT</semester>
+    <academic_batch>2023-2026</academic_batch>
+    <marks>
+      <subject code="IT601" name="Cloud Computing" max="100">62</subject>
+      <subject code="IT602" name="Information &amp; Network Security" max="100">65</subject>
+      <subject code="IT603" name="Software Engineering &amp; Agile" max="100">68</subject>
+      <subject code="IT604" name="Data Mining &amp; Business Intelligence" max="100">64</subject>
+      <subject code="IT605" name="Mobile Computing &amp; IoT" max="100">71</subject>
+    </marks>
+    <total_marks max="500">330</total_marks>
+    <percentage>66.00</percentage>
+    <grade>B</grade>
+    <result>PASS</result>
+  </student>
+
+  <!-- Student 8 -->
+  <student id="8">
+    <enrollment_no>IT2023008</enrollment_no>
+    <name>Meera Iyer</name>
+    <semester>VI IT</semester>
+    <academic_batch>2023-2026</academic_batch>
+    <marks>
+      <subject code="IT601" name="Cloud Computing" max="100">91</subject>
+      <subject code="IT602" name="Information &amp; Network Security" max="100">89</subject>
+      <subject code="IT603" name="Software Engineering &amp; Agile" max="100">87</subject>
+      <subject code="IT604" name="Data Mining &amp; Business Intelligence" max="100">93</subject>
+      <subject code="IT605" name="Mobile Computing &amp; IoT" max="100">95</subject>
+    </marks>
+    <total_marks max="500">455</total_marks>
+    <percentage>91.00</percentage>
+    <grade>A+</grade>
+    <result>PASS</result>
+  </student>
+
+  <!-- Student 9 -->
+  <student id="9">
+    <enrollment_no>IT2023009</enrollment_no>
+    <name>Kabir Das</name>
+    <semester>VI IT</semester>
+    <academic_batch>2023-2026</academic_batch>
+    <marks>
+      <subject code="IT601" name="Cloud Computing" max="100">75</subject>
+      <subject code="IT602" name="Information &amp; Network Security" max="100">72</subject>
+      <subject code="IT603" name="Software Engineering &amp; Agile" max="100">78</subject>
+      <subject code="IT604" name="Data Mining &amp; Business Intelligence" max="100">70</subject>
+      <subject code="IT605" name="Mobile Computing &amp; IoT" max="100">80</subject>
+    </marks>
+    <total_marks max="500">375</total_marks>
+    <percentage>75.00</percentage>
+    <grade>B+</grade>
+    <result>PASS</result>
+  </student>
+
+  <!-- Student 10 -->
+  <student id="10">
+    <enrollment_no>IT2023010</enrollment_no>
+    <name>Tanvi Singhania</name>
+    <semester>VI IT</semester>
+    <academic_batch>2023-2026</academic_batch>
+    <marks>
+      <subject code="IT601" name="Cloud Computing" max="100">88</subject>
+      <subject code="IT602" name="Information &amp; Network Security" max="100">85</subject>
+      <subject code="IT603" name="Software Engineering &amp; Agile" max="100">90</subject>
+      <subject code="IT604" name="Data Mining &amp; Business Intelligence" max="100">87</subject>
+      <subject code="IT605" name="Mobile Computing &amp; IoT" max="100">92</subject>
+    </marks>
+    <total_marks max="500">442</total_marks>
+    <percentage>88.40</percentage>
+    <grade>A</grade>
+    <result>PASS</result>
+  </student>
+
+</students_database>

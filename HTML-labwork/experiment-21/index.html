@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Experiment 21: Write PHP Script to demonstrate array, string and numeric function - CSIT248 Advanced Web Technology">
+  <title>Experiment 21 - PHP Array, String &amp; Numeric Functions Sandbox</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --primary: #6366f1;
+      --primary-hover: #4f46e5;
+      --secondary: #06b6d4;
+      --accent: #f43f5e;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --bg-dark: #0f172a;
+      --card-bg: #1e293b;
+      --card-border: #334155;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Sticky Navigation */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-brand {
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: #818cf8;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-brand span {
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .nav-btn {
+      background: var(--primary);
+      color: #ffffff;
+      padding: 0.45rem 1rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+
+    .nav-btn:hover {
+      background: var(--primary-hover);
+    }
+
+    /* Main Container */
+    main {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem;
+      flex: 1;
+    }
+
+    /* Header */
+    .page-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .badge-pill {
+      display: inline-block;
+      background: rgba(99, 102, 241, 0.15);
+      color: #a5b4fc;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      padding: 0.3rem 0.9rem;
+      border-radius: 9999px;
+      font-size: 0.825rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .page-title {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 0.5rem;
+    }
+
+    .page-subtitle {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    /* Tabs Nav */
+    .tabs-nav {
+      display: flex;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--card-border);
+      margin-bottom: 2rem;
+      overflow-x: auto;
+      padding-bottom: 0.25rem;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 0.75rem 1.25rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 8px 8px 0 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s;
+    }
+
+    .tab-btn:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .tab-btn.active {
+      color: #38bdf8;
+      background: var(--card-bg);
+      border-bottom: 2px solid #38bdf8;
+    }
+
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 1.75rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #38bdf8;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 0.75rem;
+    }
+
+    /* Sub-tabs for Sandbox (Array, String, Numeric) */
+    .sandbox-tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .sub-tab-btn {
+      background: #0f172a;
+      border: 1px solid var(--card-border);
+      color: #cbd5e1;
+      padding: 0.6rem 1.25rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .sub-tab-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    }
+
+    /* Sandbox Form & Controls */
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #cbd5e1;
+      margin-bottom: 0.4rem;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select {
+      width: 100%;
+      background: #0f172a;
+      border: 1px solid #475569;
+      color: #ffffff;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: var(--primary);
+    }
+
+    .output-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .output-card {
+      background: #0f172a;
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 1.15rem;
+      transition: transform 0.2s;
+    }
+
+    .output-card:hover {
+      border-color: #38bdf8;
+      transform: translateY(-2px);
+    }
+
+    .output-card .func-name {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
+      color: #818cf8;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .output-card .func-desc {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 0.65rem;
+    }
+
+    .output-card .func-result {
+      font-family: 'Fira Code', monospace;
+      font-size: 1rem;
+      color: #34d399;
+      font-weight: 700;
+      background: #1e293b;
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      word-break: break-all;
+    }
+
+    /* Code Viewers */
+    .code-container {
+      background: #0f172a;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .code-header {
+      background: #1e293b;
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .code-header span {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
+      color: #38bdf8;
+    }
+
+    .btn-copy {
+      background: #334155;
+      color: #f8fafc;
+      border: 1px solid #475569;
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-copy:hover {
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+
+    pre code {
+      display: block;
+      padding: 1.25rem;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: #e2e8f0;
+      overflow-x: auto;
+      white-space: pre;
+    }
+
+    /* Footer */
+    footer {
+      background: #0b1120;
+      border-top: 1px solid var(--card-border);
+      padding: 1.5rem 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="../index.html" class="nav-brand">
+      <span>&larr;</span> CSIT248 Lab Work
+    </a>
+    <div class="nav-links">
+      <span style="font-size: 0.85rem; color: #a5b4fc; background: rgba(99, 102, 241, 0.15); border: 1px solid rgba(99, 102, 241, 0.3); padding: 0.3rem 0.75rem; border-radius: 9999px; font-weight: 600;">
+        PHP Standard Library
+      </span>
+      <a href="../index.html" class="nav-btn">All Experiments</a>
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <main>
+
+    <header class="page-header">
+      <span class="badge-pill">Experiment 21 &bull; Module PHP Core Functions</span>
+      <h1 class="page-title">Demonstration of Array, String and Numeric Functions</h1>
+      <p class="page-subtitle">
+        Interactive testing studio executing and evaluating PHP's built-in array manipulation algorithms, string formatting and pattern operations, and mathematical precision functions.
+      </p>
+    </header>
+
+    <!-- Tabs Nav -->
+    <div class="tabs-nav">
+      <button class="tab-btn active" onclick="switchTab('sandbox', this)">
+        ⚡ Live Interactive Sandbox
+      </button>
+      <button class="tab-btn" onclick="switchTab('code', this)">
+        🐘 functions_demo.php (Server Script)
+      </button>
+      <button class="tab-btn" onclick="switchTab('manual', this)">
+        📘 Academic Lab Manual &amp; Theory
+      </button>
+    </div>
+
+    <!-- TAB 1: Live Interactive Sandbox -->
+    <section id="tab-sandbox" class="tab-panel active">
+      <div class="card">
+        
+        <!-- Category Toggle -->
+        <div class="sandbox-tabs">
+          <button type="button" class="sub-tab-btn active" onclick="switchCategory('array', this)">
+            📚 1. Array Functions
+          </button>
+          <button type="button" class="sub-tab-btn" onclick="switchCategory('string', this)">
+            🔤 2. String Functions
+          </button>
+          <button type="button" class="sub-tab-btn" onclick="switchCategory('numeric', this)">
+            🔢 3. Numeric &amp; Math Functions
+          </button>
+        </div>
+
+        <!-- 1. Array Sandbox -->
+        <div id="sandbox-array" class="category-panel">
+          <div class="form-group">
+            <label for="array-input">Comma-Separated Array Elements:</label>
+            <input type="text" id="array-input" value="Apple, Banana, Cherry, Mango, Banana, Orange" oninput="computeArrayFunctions()">
+          </div>
+          <div class="output-grid" id="array-results">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- 2. String Sandbox -->
+        <div id="sandbox-string" class="category-panel" style="display: none;">
+          <div class="form-group">
+            <label for="string-input">Input String for Analysis:</label>
+            <input type="text" id="string-input" value="Advanced Web Technology in PHP" oninput="computeStringFunctions()">
+          </div>
+          <div class="output-grid" id="string-results">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- 3. Numeric Sandbox -->
+        <div id="sandbox-numeric" class="category-panel" style="display: none;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+            <div class="form-group">
+              <label for="num-1">Number X:</label>
+              <input type="number" id="num-1" value="-49.65" step="any" oninput="computeNumericFunctions()">
+            </div>
+            <div class="form-group">
+              <label for="num-2">Number Y:</label>
+              <input type="number" id="num-2" value="8" step="any" oninput="computeNumericFunctions()">
+            </div>
+            <div class="form-group">
+              <label for="num-large">Financial Value Z:</label>
+              <input type="number" id="num-large" value="1250500.85" step="any" oninput="computeNumericFunctions()">
+            </div>
+          </div>
+          <div class="output-grid" id="numeric-results">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TAB 2: PHP Script View -->
+    <section id="tab-code" class="tab-panel">
+      <div class="card">
+        <div class="code-container">
+          <div class="code-header">
+            <span>functions_demo.php (Complete Implementation)</span>
+            <button class="btn-copy" onclick="copyCode('code-functions', this)">📋 Copy Script</button>
+          </div>
+          <pre><code id="code-functions">&lt;?php
+/**
+ * Experiment 21: Demonstration of Array, String, and Numeric Functions in PHP
+ * Course: Advanced Web Technology (CSIT248) - Amity University Noida
+ */
+
+// 1. Array Functions
+$fruits = ["Apple", "Banana", "Cherry", "Mango", "Banana"];
+$numbers = [45, 12, 89, 34, 67, 23];
+
+echo "Count: " . count($fruits) . "\n";
+echo "Unique: " . implode(", ", array_unique($fruits)) . "\n";
+echo "Search: " . (in_array("Cherry", $fruits) ? "Found" : "Not Found") . "\n";
+echo "Reversed: " . implode(", ", array_reverse($numbers)) . "\n";
+
+// Sorting
+sort($numbers);
+echo "Sorted Asc: " . implode(", ", $numbers) . "\n";
+rsort($numbers);
+echo "Sorted Desc: " . implode(", ", $numbers) . "\n";
+
+// 2. String Functions
+$str = "Advanced Web Technology in PHP";
+echo "Length: " . strlen($str) . "\n";
+echo "Word Count: " . str_word_count($str) . "\n";
+echo "Uppercase: " . strtoupper($str) . "\n";
+echo "Lowercase: " . strtolower($str) . "\n";
+echo "Position of PHP: " . strpos($str, "PHP") . "\n";
+echo "Replaced: " . str_replace("PHP", "Modern Web", $str) . "\n";
+echo "Substring (0, 8): " . substr($str, 0, 8) . "\n";
+echo "Reversed: " . strrev("Amity") . "\n";
+
+// 3. Numeric / Math Functions
+$val = -42.85;
+echo "Absolute: " . abs($val) . "\n";
+echo "Round (1 dec): " . round($val, 1) . "\n";
+echo "Ceil: " . ceil($val) . "\n";
+echo "Floor: " . floor($val) . "\n";
+echo "Square Root: " . sqrt(144) . "\n";
+echo "Power 2^8: " . pow(2, 8) . "\n";
+echo "Min: " . min(15, 82, 4, 99) . " | Max: " . max(15, 82, 4, 99) . "\n";
+echo "Random (100-999): " . rand(100, 999) . "\n";
+echo "Formatted: " . number_format(1250000.75, 2) . "\n";
+?&gt;</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: Academic Lab Manual & Theory -->
+    <section id="tab-manual" class="tab-panel">
+      <div class="card" style="line-height: 1.8;">
+        <h2 style="color: #38bdf8; font-size: 1.5rem; margin-bottom: 1rem;">Experiment 21: Academic Lab Manual</h2>
+
+        <h3 style="color: #818cf8; margin-top: 1.5rem; margin-bottom: 0.5rem;">1. Aim</h3>
+        <p style="color: #cbd5e1;">
+          To design and execute a comprehensive PHP script demonstrating the syntax, operational semantics, and practical usage of key built-in functions spanning indexed/associative arrays, string manipulation, and mathematical/numeric calculations.
+        </p>
+
+        <h3 style="color: #818cf8; margin-top: 1.5rem; margin-bottom: 0.5rem;">2. Core Function Taxonomy</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1rem;">
+          <div style="background: #0f172a; padding: 1.25rem; border: 1px solid #334155; border-radius: 8px;">
+            <h4 style="color: #38bdf8; margin-bottom: 0.5rem;">Array Functions</h4>
+            <ul style="color: #cbd5e1; font-size: 0.85rem; padding-left: 1.25rem; line-height: 1.7;">
+              <li><code>count()</code>: Counts array items</li>
+              <li><code>sort()</code> &amp; <code>rsort()</code>: Asc/Desc sorting</li>
+              <li><code>in_array()</code>: Value existence search</li>
+              <li><code>array_unique()</code>: Deduplication</li>
+              <li><code>array_reverse()</code>: Order inversion</li>
+              <li><code>array_merge()</code>: Combining arrays</li>
+            </ul>
+          </div>
+
+          <div style="background: #0f172a; padding: 1.25rem; border: 1px solid #334155; border-radius: 8px;">
+            <h4 style="color: #a5b4fc; margin-bottom: 0.5rem;">String Functions</h4>
+            <ul style="color: #cbd5e1; font-size: 0.85rem; padding-left: 1.25rem; line-height: 1.7;">
+              <li><code>strlen()</code>: Character length</li>
+              <li><code>str_word_count()</code>: Total words</li>
+              <li><code>strtoupper()</code> &amp; <code>strtolower()</code></li>
+              <li><code>strpos()</code>: Substring position finder</li>
+              <li><code>str_replace()</code>: Search and replace</li>
+              <li><code>substr()</code>: Extraction of substring</li>
+            </ul>
+          </div>
+
+          <div style="background: #0f172a; padding: 1.25rem; border: 1px solid #334155; border-radius: 8px;">
+            <h4 style="color: #34d399; margin-bottom: 0.5rem;">Numeric / Math</h4>
+            <ul style="color: #cbd5e1; font-size: 0.85rem; padding-left: 1.25rem; line-height: 1.7;">
+              <li><code>abs()</code>: Absolute non-negative value</li>
+              <li><code>round()</code>, <code>ceil()</code>, <code>floor()</code></li>
+              <li><code>sqrt()</code> &amp; <code>pow()</code>: Exponent/root</li>
+              <li><code>min()</code> &amp; <code>max()</code>: Bounds detection</li>
+              <li><code>rand()</code>: Pseudorandom integer</li>
+              <li><code>number_format()</code>: Currency/comma notation</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p style="margin-bottom: 0.4rem;">
+      Designed &amp; Developed by <strong style="color: #818cf8;">Atul Anand</strong> &bull; BCA (Hons.) with Research &bull; Semester III
+    </p>
+    <p style="color: #64748b; font-size: 0.8rem;">
+      Amity University Noida &bull; Department of Computer Applications &bull; CSIT248: Advanced Web Technology
+    </p>
+  </footer>
+
+  <!-- Script for Sandbox Real-time Computations -->
+  <script>
+    function switchCategory(cat, btn) {
+      document.querySelectorAll('.sub-tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.category-panel').forEach(p => p.style.display = 'none');
+      btn.classList.add('active');
+      document.getElementById('sandbox-' + cat).style.display = 'block';
+    }
+
+    function switchTab(tabId, btn) {
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('tab-' + tabId).classList.add('active');
+      btn.classList.add('active');
+    }
+
+    // 1. Array Computations
+    function computeArrayFunctions() {
+      const raw = document.getElementById('array-input').value;
+      const arr = raw.split(',').map(s => s.trim()).filter(s => s.length > 0);
+      const container = document.getElementById('array-results');
+
+      const count = arr.length;
+      const unique = Array.from(new Set(arr));
+      const reversed = [...arr].reverse();
+      const sortedAsc = [...arr].sort();
+      const sortedDesc = [...arr].sort().reverse();
+      const first = arr[0] || 'N/A';
+      const last = arr[arr.length - 1] || 'N/A';
+
+      container.innerHTML = `
+        <div class="output-card">
+          <div class="func-name">count($arr)</div>
+          <div class="func-desc">Number of elements in array</div>
+          <div class="func-result">${count} elements</div>
+        </div>
+        <div class="output-card">
+          <div class="func-name">array_unique($arr)</div>
+          <div class="func-desc">Removes duplicate values</div>
+          <div class="func-result">[${unique.join(', ')}]</div>
+        </div>
+        <div class="output-card">
+          <div class="func-name">array_reverse($arr)</div>
+          <div class="func-desc">Returns array in reversed order</div>
+          <div class="func-result">[${reversed.join(', ')}]</div>
+        </div>
+        <div class="output-card">
+          <div class="func-name">sort($arr)</div>
+          <div class="func-desc">Sorts array ascending</div>
+          <div class="func-result">[${sortedAsc.join(', ')}]</div>
+        </div>
+        <div class="output-card">
+          <div class="func-name">rsort($arr)</div>
+          <div class="func-desc">Sorts array descending</div>
+          <div class="func-result">[${sortedDesc.join(', ')}]</div>
+        </div>
+        <div class="output-card">
+          <div class="func-name">reset() / end()</div>
+          <div class="func-desc">First and last elements</div>
+          <div class="func-result">${first} &bull; ${last}</div>
+        </div>
+      `;
+    }
+
+    // 2. String Computations
+    function computeStringFunctions() {
+      const s = document.getElementById('string-input').value;
+      const container = document.getElementById('string-results');
+
+      const len = s.length;
+      const words = s.trim().length === 0 ? 0 : s.trim().split(/\s+/).length;
+      const upper = s.toUpperCase();
+      const lower = s.toLowerCase();
+      const reversed = s.split('').reverse().join('');
+      const sub = s.slice(0, 8);
+      const replaced = s.replace(/PHP/gi, 'Modern Web');
+
+      container.innerHTML = `
+        <div class="output-card">
+          <div class="func-name">strlen($str)</div>
+          <div class="func-desc">Total character count</div>
+          <div class="func-result">${len} chars</div>
+        </div>
+        <div class="output-card">
+          <div class="func-name">str_word_count($str)</div>
+          <div class="func-desc">Count words in string</div>
+          <div class="func-result">${words} words</div>
+        </div>
+        <div class="output-card">
+          <div class="func-name">strtoupper($str)</div>
+          <div class="func-desc">Convert string to uppercase</div>
+          <div class="func-result">${upper}</div>
+        </div>
+        <div class="output-card">
+          <div class="func-name">strtolower($str)</div>
+          <div class="func-desc">Convert string to lowercase</div>
+          <div class="func-result">${lower}</div>
+        </div>
+        <div class="output-card">
+          <div class="func-name">strrev($str)</div>
+          <div class="func-desc">Reverse a string</div>
+          <div class="func-result">${reversed}</div>
+        </div>
+        <div class="output-card">
+          <div class="func-name">substr($str, 0, 8)</div>
+          <div class="func-desc">Extract first 8 characters</div>
+          <div class="func-result">"${sub}"</div>
+        </div>
+        <div class="output-card">
+          <div class="func-name">str_replace("PHP", "Modern Web")</div>
+          <div class="func-desc">Replace search term with replacement</div>
+          <div class="func-result">"${replaced}"</div>
+        </div>
+      `;
+    }
+
+    // 3. Numeric Computations
+    function computeNumericFunctions() {
+      const x = parseFloat(document.getElementById('num-1').value) || 0;
+      const y = parseFloat(document.getElementById('num-2').value) || 0;
+      const z = parseFloat(document.getElementById('num-large').value) || 0;
+      const container = document.getElementById('numeric-results');
+
+      const absolute = Math.abs(x);
+      const rounded = Math.round(x);
+      const ceiling = Math.ceil(x);
+      const floorVal = Math.floor(x);
+      const squareRoot = Math.abs(y) >= 0 ? Math.sqrt(Math.abs(y)).toFixed(3) : 'NaN';
+      const power = Math.pow(2, y);
+      const formatted = new Intl.NumberFormat('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(z);
+      const randomVal = Math.floor(Math.random() * (999 - 100 + 1)) + 100;
+
+      container.innerHTML = `
+        <div class="output-card">
+          <div class="func-name">abs(X)</div>
+          <div class="func-desc">Absolute magnitude of ${x}</div>
+          <div class="func-result">${absolute}</div>
+        </div>
+        <div class="output-card">
+          <div class="func-name">round(X)</div>
+          <div class="func-desc">Nearest integer</div>
+          <div class="func-result">${rounded}</div>
+        </div>
+        <div class="output-card">
+          <div class="func-name">ceil(X) / floor(X)</div>
+          <div class="func-desc">Ceil vs Floor of ${x}</div>
+          <div class="func-result">Ceil: ${ceiling} | Floor: ${floorVal}</div>
+        </div>
+        <div class="output-card">
+          <div class="func-name">sqrt(|Y|)</div>
+          <div class="func-desc">Square root of ${Math.abs(y)}</div>
+          <div class="func-result">${squareRoot}</div>
+        </div>
+        <div class="output-card">
+          <div class="func-name">pow(2, Y)</div>
+          <div class="func-desc">Base 2 raised to power ${y}</div>
+          <div class="func-result">${power}</div>
+        </div>
+        <div class="output-card">
+          <div class="func-name">rand(100, 999)</div>
+          <div class="func-desc">Random integer generator</div>
+          <div class="func-result">${randomVal}</div>
+        </div>
+        <div class="output-card">
+          <div class="func-name">number_format(Z, 2)</div>
+          <div class="func-desc">Formatted with commas &amp; decimals</div>
+          <div class="func-result">${formatted}</div>
+        </div>
+      `;
+    }
+
+    function copyCode(elementId, btn) {
+      const text = document.getElementById(elementId).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const orig = btn.innerText;
+        btn.innerText = "Copied! ✅";
+        btn.style.background = "#10b981";
+        setTimeout(() => {
+          btn.innerText = orig;
+          btn.style.background = "";
+        }, 2000);
+      });
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      computeArrayFunctions();
+      computeStringFunctions();
+      computeNumericFunctions();
+    });
+  </script>
+
+</body>
+
+</html>

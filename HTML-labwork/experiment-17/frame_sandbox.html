@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive DOM Sandbox Frame</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #0f172a;
+      color: #f8fafc;
+      margin: 0;
+      padding: 1.25rem;
+      line-height: 1.5;
+    }
+    .badge {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #34d399;
+      padding: 0.2rem 0.6rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    h2 {
+      font-size: 1.35rem;
+      color: #ffffff;
+      margin: 0.5rem 0 0.25rem;
+    }
+    p {
+      color: #94a3b8;
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+    }
+    .interactive-card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+    .btn-group {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    button {
+      background: #6366f1;
+      color: #ffffff;
+      border: none;
+      padding: 0.5rem 0.9rem;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    button:hover {
+      background: #4f46e5;
+    }
+    .result-box {
+      background: #090d16;
+      border: 1px dashed #475569;
+      border-radius: 8px;
+      padding: 1rem;
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      color: #38bdf8;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <span class="badge">Live Nested Sandbox</span>
+  <h2>Embedded IFRAME Interactive Component</h2>
+  <p>Demonstrating cross-document encapsulation and dynamic DOM state within an isolated IFRAME window context.</p>
+
+  <div class="interactive-card">
+    <div class="btn-group">
+      <button onclick="updateOutput('Primary Action Executed: Color mode updated to Indigo (#6366f1)!')">Accent Trigger</button>
+      <button onclick="updateOutput('System Time Snapshot: ' + new Date().toLocaleTimeString())" style="background: #06b6d4;">Fetch Timestamp</button>
+      <button onclick="generateRandomMetric()" style="background: #10b981;">Calculate Metric</button>
+      <button onclick="clearOutput()" style="background: #475569;">Reset Frame</button>
+    </div>
+    <div id="outputBox" class="result-box">
+      Click any button above to test real-time script evaluation inside this IFRAME!
+    </div>
+  </div>
+
+  <script>
+    function updateOutput(text) {
+      document.getElementById('outputBox').textContent = text;
+    }
+    function generateRandomMetric() {
+      const ping = Math.floor(Math.random() * 25) + 12;
+      const mem = (Math.random() * 1.5 + 4.2).toFixed(2);
+      document.getElementById('outputBox').textContent = `Latency: ${ping}ms | Memory Allocated: ${mem}MB | Status: 200 OK (Isolated Context)`;
+    }
+    function clearOutput() {
+      document.getElementById('outputBox').textContent = 'Frame output cleared.';
+    }
+  </script>
+</body>
+</html>

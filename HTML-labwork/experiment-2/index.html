@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Experiment 2: Design a web page to introduce yourself - CSIT248 Advanced Web Technology">
+  <title>Experiment 02 - Introduce Yourself (Inline CSS)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body
+  style="margin: 0; padding: 0; font-family: 'Inter', system-ui, -apple-system, sans-serif; background-color: #0f172a; color: #f8fafc; line-height: 1.7; min-height: 100vh;">
+
+  <!-- ==============================================
+       NAVIGATION BAR (Formatted via Inline CSS)
+       ============================================== -->
+  <nav
+    style="position: sticky; top: 0; z-index: 100; background: rgba(15, 23, 42, 0.92); backdrop-filter: blur(12px); border-bottom: 1px solid #334155; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+    <a href="../index.html"
+      style="font-weight: 800; font-size: 1.2rem; color: #818cf8; text-decoration: none; display: flex; align-items: center; gap: 0.5rem;">
+      <span
+        style="background: rgba(99, 102, 241, 0.15); border: 1px solid rgba(99, 102, 241, 0.3); padding: 0.2rem 0.5rem; border-radius: 6px;">&larr;</span>
+      CSIT248 Lab Work
+    </a>
+    <ul
+      style="display: flex; list-style: none; gap: 1.25rem; margin: 0; padding: 0; align-items: center; flex-wrap: wrap;">
+      <li><a href="#about" style="color: #94a3b8; text-decoration: none; font-size: 0.9rem; font-weight: 500;">About</a>
+      </li>
+      <li><a href="#education"
+          style="color: #94a3b8; text-decoration: none; font-size: 0.9rem; font-weight: 500;">Education</a></li>
+      <li><a href="#skills" style="color: #94a3b8; text-decoration: none; font-size: 0.9rem; font-weight: 500;">Skills
+          &amp; Domains</a></li>
+      <li><a href="#projects"
+          style="color: #94a3b8; text-decoration: none; font-size: 0.9rem; font-weight: 500;">Projects</a></li>
+      <li><a href="#hobbies"
+          style="color: #94a3b8; text-decoration: none; font-size: 0.9rem; font-weight: 500;">Hobbies</a></li>
+      <li><a href="#contact"
+          style="color: #94a3b8; text-decoration: none; font-size: 0.9rem; font-weight: 500;">Contact</a></li>
+      <li>
+        <a href="../index.html"
+          style="background: #6366f1; color: #ffffff; padding: 0.35rem 0.85rem; border-radius: 6px; text-decoration: none; font-size: 0.85rem; font-weight: 600;">
+          All Experiments
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- ==============================================
+       MARQUEE TAG (Formatted via Inline CSS)
+       ============================================== -->
+  <div
+    style="background: linear-gradient(90deg, #4338ca, #6366f1, #06b6d4); color: #ffffff; padding: 0.45rem 1rem; font-size: 0.85rem; font-weight: 600;">
+    <marquee behavior="scroll" direction="left" scrollamount="6">
+      🚀 Welcome to Atul Anand's Portfolio | BCA (Hons.) with Research Student at Amity University Noida | Exploring Web
+      Development, AI/ML, Cybersecurity &amp; Data Analytics!
+    </marquee>
+  </div>
+
+  <!-- ==============================================
+       HERO HEADER (Formatted via Inline CSS)
+       ============================================== -->
+  <header id="about"
+    style="padding: 4rem 1.5rem 3rem 1.5rem; text-align: center; background: radial-gradient(circle at 50% 25%, rgba(99, 102, 241, 0.18) 0%, rgba(15, 23, 42, 0) 70%); border-bottom: 1px solid #1e293b;">
+    <div
+      style="width: 140px; height: 140px; margin: 0 auto 1.5rem auto; border-radius: 50%; padding: 4px; background: linear-gradient(135deg, #6366f1, #ec4899); box-shadow: 0 10px 25px rgba(99, 102, 241, 0.35);">
+      <!-- Real Portrait Photograph -->
+      <img src="atul_anand.jpg" alt="Atul Anand"
+        style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block; border: 2px solid #0f172a;">
+    </div>
+    <h1 style="font-size: 2.75rem; font-weight: 800; color: #ffffff; margin: 0 0 0.5rem 0; letter-spacing: -0.025em;">
+      Atul Anand</h1>
+    <p style="color: #38bdf8; font-size: 1.25rem; font-weight: 600; margin: 0 0 0.5rem 0;">BCA Student / Aspiring
+      Software Developer</p>
+    <p style="color: #cbd5e1; font-size: 1rem; font-weight: 500; margin: 0 0 1rem 0;">BCA (Hons.) with Research &bull;
+      Semester III &bull; Amity University Noida</p>
+
+    <p style="max-width: 720px; margin: 0 auto 1.25rem auto; color: #94a3b8; font-size: 1.05rem; line-height: 1.6;">
+      Passionate about building intuitive, accessible, and high-performance digital experiences while exploring Web
+      Development, AI/ML, Cybersecurity, and Data Analytics.
+    </p>
+
+    <!-- Focus Badges (Inline CSS) -->
+    <div style="display: flex; justify-content: center; gap: 0.6rem; flex-wrap: wrap;">
+      <span
+        style="font-size: 0.8rem; background: rgba(99, 102, 241, 0.15); color: #a5b4fc; border: 1px solid rgba(99, 102, 241, 0.3); padding: 0.25rem 0.75rem; border-radius: 9999px; font-weight: 600;">💻
+        Web Development</span>
+      <span
+        style="font-size: 0.8rem; background: rgba(6, 182, 212, 0.15); color: #67e8f9; border: 1px solid rgba(6, 182, 212, 0.3); padding: 0.25rem 0.75rem; border-radius: 9999px; font-weight: 600;">🤖
+        AI &amp; Machine Learning</span>
+      <span
+        style="font-size: 0.8rem; background: rgba(245, 158, 11, 0.15); color: #fcd34d; border: 1px solid rgba(245, 158, 11, 0.3); padding: 0.25rem 0.75rem; border-radius: 9999px; font-weight: 600;">🛡️
+        Cybersecurity</span>
+      <span
+        style="font-size: 0.8rem; background: rgba(16, 185, 129, 0.15); color: #6ee7b7; border: 1px solid rgba(16, 185, 129, 0.3); padding: 0.25rem 0.75rem; border-radius: 9999px; font-weight: 600;">📊
+        Data Analytics</span>
+    </div>
+  </header>
+
+  <!-- ==============================================
+       MAIN CONTAINER (Formatted via Inline CSS)
+       ============================================== -->
+  <main style="max-width: 1000px; margin: 0 auto; padding: 2.5rem 1.5rem;">
+
+    <!-- Section 1: Detailed Bio with Text Formatting Tags -->
+    <section
+      style="background: #1e293b; border: 1px solid #334155; border-radius: 14px; padding: 2rem; margin-bottom: 2.5rem; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);">
+      <h2
+        style="font-size: 1.5rem; font-weight: 700; color: #f8fafc; margin: 0 0 1rem 0; border-bottom: 2px solid #334155; padding-bottom: 0.5rem;">
+        <span style="color: #6366f1;">01.</span> About Me &amp; Profile Focus
+      </h2>
+      <p style="color: #e2e8f0; font-size: 1rem; margin: 0 0 1rem 0;">
+        Hello! I am a dedicated <strong>BCA (Hons.) with Research</strong> student at <em>Amity University Noida</em>,
+        specializing in <strong style="color: #38bdf8;">Computer Applications</strong>. My profile focus centers around
+        <u style="text-decoration-color: #6366f1;">building practical, user-friendly, and innovative digital
+          solutions</u> to solve real-world problems.
+      </p>
+      <p style="color: #e2e8f0; font-size: 1rem; margin: 0 0 1.25rem 0;">
+        Currently in <mark
+          style="background: rgba(99, 102, 241, 0.25); color: #c7d2fe; padding: 0.15rem 0.4rem; border-radius: 4px;">Semester
+          III</mark>, actively strengthening my skills in full stack web technologies, intelligent algorithms, secure
+        system design, and data-driven analytical insights.
+      </p>
+      <hr style="margin: 1.5rem 0; border: 0; border-top: 1px solid #334155;">
+      <p style="color: #94a3b8; font-size: 0.9rem; margin: 0;">
+        <small><strong style="color: #cbd5e1;">Core Philosophy:</strong> Innovation &times; Practicality<sup>2</sup> =
+          User Impact</small> &bull;
+        <small><strong style="color: #cbd5e1;">Lab Course:</strong> CSIT248 Advanced Web Technology</small>
+      </p>
+    </section>
+
+    <!-- Section 2: Educational Background (HTML Table with Inline CSS) -->
+    <section id="education" style="margin-bottom: 2.5rem;">
+      <h2
+        style="font-size: 1.5rem; font-weight: 700; color: #f8fafc; margin: 0 0 1rem 0; border-bottom: 2px solid #334155; padding-bottom: 0.5rem;">
+        <span style="color: #6366f1;">02.</span> Educational Background
+      </h2>
+      <div
+        style="background: #1e293b; border: 1px solid #334155; border-radius: 14px; overflow-x: auto; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);">
+        <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.95rem;">
+          <thead>
+            <tr style="background: #1e1b4b; color: #a5b4fc; border-bottom: 1px solid #334155;">
+              <th style="padding: 1rem 1.25rem; font-weight: 600;">Degree / Program</th>
+              <th style="padding: 1rem 1.25rem; font-weight: 600;">Institution / University</th>
+              <th style="padding: 1rem 1.25rem; font-weight: 600;">Field / Discipline</th>
+              <th style="padding: 1rem 1.25rem; font-weight: 600;">Academic Timeline</th>
+              <th style="padding: 1rem 1.25rem; font-weight: 600;">Current Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid #334155;">
+              <td style="padding: 1rem 1.25rem; color: #ffffff; font-weight: 600;">BCA (Hons.) with Research</td>
+              <td style="padding: 1rem 1.25rem; color: #cbd5e1;">Amity University Noida</td>
+              <td style="padding: 1rem 1.25rem; color: #cbd5e1;">Computer Applications</td>
+              <td style="padding: 1rem 1.25rem; color: #cbd5e1;">2025 &ndash; 2029</td>
+              <td style="padding: 1rem 1.25rem; color: #34d399; font-weight: 600;">Pursuing (Semester III)</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #334155; background: rgba(255, 255, 255, 0.015);">
+              <td style="padding: 1rem 1.25rem; color: #ffffff; font-weight: 600;">Senior Secondary (Class XII)</td>
+              <td style="padding: 1rem 1.25rem; color: #cbd5e1;">Shivam School</td>
+              <td style="padding: 1rem 1.25rem; color: #cbd5e1;">PCM &amp; Fine-Art</td>
+              <td style="padding: 1rem 1.25rem; color: #cbd5e1;">2020 &ndash; 2022</td>
+              <td style="padding: 1rem 1.25rem; color: #38bdf8; font-weight: 600;">Completed (Distinction)</td>
+            </tr>
+            <tr>
+              <td style="padding: 1rem 1.25rem; color: #ffffff; font-weight: 600;">Secondary School (Class X)</td>
+              <td style="padding: 1rem 1.25rem; color: #cbd5e1;">DAV Public School</td>
+              <td style="padding: 1rem 1.25rem; color: #cbd5e1;">General Sciences &amp; Math</td>
+              <td style="padding: 1rem 1.25rem; color: #cbd5e1;">2018 &ndash; 2020</td>
+              <td style="padding: 1rem 1.25rem; color: #38bdf8; font-weight: 600;">Completed (Distinction)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Section 3: Technical Competencies & Interest Domains (Inline CSS) -->
+    <section id="skills" style="margin-bottom: 2.5rem;">
+      <h2
+        style="font-size: 1.5rem; font-weight: 700; color: #f8fafc; margin: 0 0 1.25rem 0; border-bottom: 2px solid #334155; padding-bottom: 0.5rem;">
+        <span style="color: #6366f1;">03.</span> Technical Competencies &amp; Domains of Interest
+      </h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+
+        <!-- Domain 1: Web Development -->
+        <div
+          style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 1.5rem; box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);">
+          <h3 style="color: #38bdf8; font-size: 1.15rem; margin: 0 0 1rem 0; font-weight: 700;">🌐 Web Development</h3>
+          <ul style="margin: 0; padding-left: 1.25rem; color: #cbd5e1; font-size: 0.9rem; line-height: 1.8;">
+            <li>Semantic HTML5, Image Mapping &amp; Canvas</li>
+            <li>CSS3 (Flexbox, Grid, Inline Styling, Animations)</li>
+            <li>JavaScript (ES6+, DOM Manipulation &amp; Validation)</li>
+            <li>PHP &amp; MySQL Relational Database Integration</li>
+          </ul>
+        </div>
+
+        <!-- Domain 2: AI / ML & Data Analytics -->
+        <div
+          style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 1.5rem; box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);">
+          <h3 style="color: #34d399; font-size: 1.15rem; margin: 0 0 1rem 0; font-weight: 700;">🤖 AI/ML &amp; Data
+            Analytics</h3>
+          <ul style="margin: 0; padding-left: 1.25rem; color: #cbd5e1; font-size: 0.9rem; line-height: 1.8;">
+            <li>Python Programming &amp; Algorithmic Foundations</li>
+            <li>Machine Learning Core Concepts &amp; Modeling</li>
+            <li>Data Analysis (Pandas, NumPy, Data Cleaning)</li>
+            <li>Data Visualization &amp; Exploratory Data Analysis</li>
+          </ul>
+        </div>
+
+        <!-- Domain 3: Cybersecurity & Tools -->
+        <div
+          style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 1.5rem; box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);">
+          <h3 style="color: #fbbf24; font-size: 1.15rem; margin: 0 0 1rem 0; font-weight: 700;">🛡️ Cybersecurity &amp;
+            Tools</h3>
+          <ol style="margin: 0; padding-left: 1.25rem; color: #cbd5e1; font-size: 0.9rem; line-height: 1.8;">
+            <li>Web Security Principles &amp; Input Sanitization</li>
+            <li>Network Protocols &amp; Cryptography Basics</li>
+            <li>Git &amp; GitHub Version Control Workflows</li>
+            <li>Linux Terminal &amp; VS Code Development</li>
+          </ol>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 4: Definition List (Inline CSS) -->
+    <section style="margin-bottom: 2.5rem;">
+      <h2
+        style="font-size: 1.5rem; font-weight: 700; color: #f8fafc; margin: 0 0 1.25rem 0; border-bottom: 2px solid #334155; padding-bottom: 0.5rem;">
+        <span style="color: #6366f1;">04.</span> Personal Attributes &amp; Strengths
+      </h2>
+      <dl
+        style="display: grid; grid-template-columns: 180px 1fr; gap: 1rem 1.5rem; background: #1e293b; padding: 1.75rem; border-radius: 14px; border: 1px solid #334155; margin: 0; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);">
+        <dt style="font-weight: 700; color: #38bdf8; font-size: 0.95rem;">Solution Builder</dt>
+        <dd style="margin: 0; color: #cbd5e1; font-size: 0.95rem;">Focus on engineering practical, user-friendly, and
+          accessible software solutions that address tangible challenges.</dd>
+
+        <dt style="font-weight: 700; color: #38bdf8; font-size: 0.95rem;">Research-Oriented</dt>
+        <dd style="margin: 0; color: #cbd5e1; font-size: 0.95rem;">Eager to explore emerging technologies in Artificial
+          Intelligence, predictive data modeling, and cybersecurity.</dd>
+
+        <dt style="font-weight: 700; color: #38bdf8; font-size: 0.95rem;">Collaborative</dt>
+        <dd style="margin: 0; color: #cbd5e1; font-size: 0.95rem;">Strong communicator in peer programming, technical
+          writing, code reviews, and structured academic coursework.</dd>
+
+        <dt style="font-weight: 700; color: #38bdf8; font-size: 0.95rem;">Design Mindset</dt>
+        <dd style="margin: 0; color: #cbd5e1; font-size: 0.95rem;">Prioritizes high visual aesthetics, responsive
+          layouts, intuitive UX flows, and robust error handling.</dd>
+      </dl>
+    </section>
+
+    <!-- Section 5: Projects Showcase (Inline CSS) -->
+    <section id="projects" style="margin-bottom: 2.5rem;">
+      <h2
+        style="font-size: 1.5rem; font-weight: 700; color: #f8fafc; margin: 0 0 1.25rem 0; border-bottom: 2px solid #334155; padding-bottom: 0.5rem;">
+        <span style="color: #6366f1;">05.</span> Featured Academic Projects
+      </h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+
+        <!-- Project 1 -->
+        <article
+          style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; overflow: hidden; box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);">
+          <div
+            style="height: 120px; background: linear-gradient(135deg, #1e1b4b, #312e81); display: flex; align-items: center; justify-content: center; color: #a5b4fc;">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+          </div>
+          <div style="padding: 1.25rem;">
+            <h4 style="font-size: 1.1rem; color: #ffffff; margin: 0 0 0.5rem 0;">Interactive Web Portal</h4>
+            <p style="color: #94a3b8; font-size: 0.875rem; margin: 0 0 1rem 0;">A multi-page responsive web platform
+              demonstrating semantic HTML5, CSS animations, and front-level validation.</p>
+            <a href="../index.html"
+              style="color: #38bdf8; font-size: 0.85rem; font-weight: 600; text-decoration: none;">View Portfolio Hub
+              &rarr;</a>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article
+          style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; overflow: hidden; box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);">
+          <div
+            style="height: 120px; background: linear-gradient(135deg, #064e3b, #047857); display: flex; align-items: center; justify-content: center; color: #6ee7b7;">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+          </div>
+          <div style="padding: 1.25rem;">
+            <h4 style="font-size: 1.1rem; color: #ffffff; margin: 0 0 0.5rem 0;">E-Commerce Catalog System</h4>
+            <p style="color: #94a3b8; font-size: 0.875rem; margin: 0 0 1rem 0;">Tabular inventory catalog for computer
+              peripherals with specifications, stock indicators, and price calculation logic.</p>
+            <a href="../experiment-11/index.html"
+              style="color: #34d399; font-size: 0.85rem; font-weight: 600; text-decoration: none;">Open Catalog
+              &rarr;</a>
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article
+          style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; overflow: hidden; box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);">
+          <div
+            style="height: 120px; background: linear-gradient(135deg, #701a75, #a21caf); display: flex; align-items: center; justify-content: center; color: #f472b6;">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
+              <line x1="8" y1="2" x2="8" y2="18"></line>
+              <line x1="16" y1="6" x2="16" y2="22"></line>
+            </svg>
+          </div>
+          <div style="padding: 1.25rem;">
+            <h4 style="font-size: 1.1rem; color: #ffffff; margin: 0 0 0.5rem 0;">Client Image Mapping Demo</h4>
+            <p style="color: #94a3b8; font-size: 0.875rem; margin: 0 0 1rem 0;">Hotspot coordinate mapping interface for
+              interactive graphic exploration with rectangular, circular, and polygonal regions.</p>
+            <a href="../experiment-4/index.html"
+              style="color: #f472b6; font-size: 0.85rem; font-weight: 600; text-decoration: none;">Explore Mapping
+              &rarr;</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Section 6: Hobbies (Inline CSS) -->
+    <section id="hobbies"
+      style="background: #1e293b; border: 1px solid #334155; border-radius: 14px; padding: 2rem; margin-bottom: 2.5rem; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);">
+      <h2
+        style="font-size: 1.5rem; font-weight: 700; color: #f8fafc; margin: 0 0 1rem 0; border-bottom: 2px solid #334155; padding-bottom: 0.5rem;">
+        <span style="color: #6366f1;">06.</span> Hobbies &amp; Extracurricular Interests
+      </h2>
+      <ul style="margin: 0; padding-left: 1.25rem; color: #cbd5e1; font-size: 0.95rem; line-height: 2;">
+        <li>💻 <strong style="color: #ffffff;">Tech Exploration:</strong> Experimenting with new web tools, AI
+          libraries, and open-source software.</li>
+        <li>♟️ <strong style="color: #ffffff;">Competitive Chess:</strong> Enjoy rapid and tactical chess games to
+          sharpen analytical problem-solving.</li>
+        <li>📷 <strong style="color: #ffffff;">Photography:</strong> Capturing urban landscape shots, architectures, and
+          natural lighting.</li>
+        <li>🏃 <strong style="color: #ffffff;">Fitness &amp; Running:</strong> Regular workout routines and distance
+          running for physical wellness.</li>
+      </ul>
+    </section>
+
+    <!-- Section 7: Contact & Address Tag (Inline CSS) -->
+    <section id="contact"
+      style="background: #1e293b; border: 1px solid #334155; border-radius: 14px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);">
+      <h2
+        style="font-size: 1.5rem; font-weight: 700; color: #f8fafc; margin: 0 0 1rem 0; border-bottom: 2px solid #334155; padding-bottom: 0.5rem;">
+        <span style="color: #6366f1;">07.</span> Contact &amp; Connect
+      </h2>
+      <p style="color: #94a3b8; font-size: 0.95rem; margin: 0 0 1.25rem 0;">Feel free to connect for academic
+        collaboration, project discussions, or tech innovations:</p>
+
+      <!-- Demonstrating <address> tag with Inline CSS -->
+      <address style="font-style: normal; line-height: 1.9; color: #cbd5e1; font-size: 0.95rem; margin-bottom: 1.5rem;">
+        <strong style="color: #ffffff; font-size: 1.1rem;">Atul Anand</strong><br>
+        BCA (Hons.) with Research &bull; Semester III<br>
+        Department of Computer Applications<br>
+        Amity University Noida, Uttar Pradesh, India
+      </address>
+
+      <!-- Connect Action Buttons (Inline CSS) -->
+      <div style="display: flex; gap: 0.85rem; flex-wrap: wrap;">
+
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer"
+          style="display: flex; align-items: center; gap: 0.5rem; background: #0077b5; color: #ffffff; text-decoration: none; padding: 0.65rem 1.1rem; border-radius: 8px; font-weight: 600; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0, 119, 181, 0.3);">
+          <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.2a1.66 1.66 0 0 0-1.67 1.66c0 .92.75 1.67 1.67 1.67s1.66-.75 1.66-1.67A1.66 1.66 0 0 0 7.83 6.2z" />
+          </svg>
+          LinkedIn
+        </a>
+
+        <!-- GitHub -->
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer"
+          style="display: flex; align-items: center; gap: 0.5rem; background: #0f172a; color: #ffffff; border: 1px solid #475569; text-decoration: none; padding: 0.65rem 1.1rem; border-radius: 8px; font-weight: 600; font-size: 0.875rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);">
+          <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+          </svg>
+          GitHub
+        </a>
+
+        <!-- Open Gmail Directly -->
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=atulll0923@gmail.com" target="_blank"
+          rel="noopener noreferrer"
+          style="display: flex; align-items: center; gap: 0.5rem; background: linear-gradient(135deg, #ea4335, #c5221f); color: #ffffff; text-decoration: none; padding: 0.65rem 1.1rem; border-radius: 8px; font-weight: 600; font-size: 0.875rem; box-shadow: 0 4px 14px rgba(234, 67, 53, 0.35);">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+          Open Gmail
+        </a>
+
+        <!-- Copy Email Button -->
+        <button onclick="copyEmail(this)" type="button"
+          style="display: flex; align-items: center; gap: 0.5rem; background: #334155; color: #f8fafc; border: 1px solid #64748b; padding: 0.65rem 1.1rem; border-radius: 8px; font-weight: 600; font-size: 0.875rem; cursor: pointer;">
+          📋 <span id="copy-btn-text">Copy Email</span>
+        </button>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- JavaScript to Copy Email -->
+  <script>
+    function copyEmail(btn) {
+      const email = 'atulll0923@gmail.com';
+      navigator.clipboard.writeText(email).then(() => {
+        const textSpan = btn.querySelector('#copy-btn-text');
+        textSpan.textContent = 'Copied! ✅';
+        btn.style.background = '#10b981';
+        btn.style.borderColor = '#34d399';
+        setTimeout(() => {
+          textSpan.textContent = 'Copy Email';
+          btn.style.background = '#334155';
+          btn.style.borderColor = '#64748b';
+        }, 2500);
+      }).catch(err => {
+        prompt('Copy email manually:', email);
+      });
+    }
+  </script>
+
+  <!-- ==============================================
+       FOOTER (Formatted via Inline CSS)
+       ============================================== -->
+  <footer
+    style="background: #090d16; border-top: 1px solid #1e293b; padding: 2rem 1.5rem; text-align: center; color: #94a3b8; font-size: 0.875rem;">
+    <p style="margin: 0 0 0.5rem 0;">Experiment 02 &bull; CSIT248 Advanced Web Technology &bull; Designed by Atul Anand
+      (BCA Hons. with Research)</p>
+    <p style="margin: 0 0 0.75rem 0; color: #64748b; font-size: 0.8rem;">Amity University Noida &bull; Formatted using
+      100% Inline CSS</p>
+    <p style="margin: 0;"><a href="../index.html"
+        style="color: #818cf8; text-decoration: none; font-weight: 600;">&uarr; Back to Lab Work Portal</a></p>
+  </footer>
+
+</body>
+
+</html>
