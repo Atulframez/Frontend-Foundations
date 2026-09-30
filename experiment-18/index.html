@@ -9,7 +9,9 @@
   <title>Experiment 18 - CSS Pseudo-Classes Interactive Studio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;600&display=swap"
+    rel="stylesheet">
   <style>
     :root {
       --primary: #6366f1;
@@ -342,11 +344,11 @@
       border-radius: 50%;
     }
 
-    .toggle-switch input:checked + .toggle-slider {
+    .toggle-switch input:checked+.toggle-slider {
       background-color: #6366f1;
     }
 
-    .toggle-switch input:checked + .toggle-slider:before {
+    .toggle-switch input:checked+.toggle-slider:before {
       transform: translateX(28px);
     }
 
@@ -422,8 +424,8 @@
       transition: all 0.2s ease;
     }
 
-    .floating-input:not(:placeholder-shown) + .floating-label,
-    .floating-input:focus + .floating-label {
+    .floating-input:not(:placeholder-shown)+.floating-label,
+    .floating-input:focus+.floating-label {
       top: 0.25rem;
       font-size: 0.65rem;
       color: #818cf8;
@@ -724,7 +726,8 @@
         <div class="demo-stage">
           <button type="button" class="btn-hover-demo">Hover Over Me ✨</button>
         </div>
-        <div style="font-size: 0.75rem; color: #64748b; font-family: monospace;">button:hover { transform: translateY(-4px); }</div>
+        <div style="font-size: 0.75rem; color: #64748b; font-family: monospace;">button:hover { transform:
+          translateY(-4px); }</div>
       </div>
 
       <!-- :active -->
@@ -739,7 +742,8 @@
         <div class="demo-stage">
           <button type="button" class="btn-active-demo">Press &amp; Hold Me 🔘</button>
         </div>
-        <div style="font-size: 0.75rem; color: #64748b; font-family: monospace;">button:active { transform: translateY(6px); }</div>
+        <div style="font-size: 0.75rem; color: #64748b; font-family: monospace;">button:active { transform:
+          translateY(6px); }</div>
       </div>
 
       <!-- :focus -->
@@ -754,7 +758,8 @@
         <div class="demo-stage">
           <input type="text" class="input-focus-demo" placeholder="Click or Tab here to focus...">
         </div>
-        <div style="font-size: 0.75rem; color: #64748b; font-family: monospace;">input:focus { border-color: #38bdf8; }</div>
+        <div style="font-size: 0.75rem; color: #64748b; font-family: monospace;">input:focus { border-color: #38bdf8; }
+        </div>
       </div>
 
       <!-- :focus-within -->
@@ -769,10 +774,12 @@
         <div class="demo-stage">
           <div class="container-focus-within">
             <div style="font-size: 0.75rem; color: #94a3b8; margin-bottom: 0.35rem;">Parent Container</div>
-            <input type="text" class="input-focus-demo" placeholder="Focus child input..." style="padding: 0.4rem 0.75rem;">
+            <input type="text" class="input-focus-demo" placeholder="Focus child input..."
+              style="padding: 0.4rem 0.75rem;">
           </div>
         </div>
-        <div style="font-size: 0.75rem; color: #64748b; font-family: monospace;">.parent:focus-within { border-color: #f59e0b; }</div>
+        <div style="font-size: 0.75rem; color: #64748b; font-family: monospace;">.parent:focus-within { border-color:
+          #f59e0b; }</div>
       </div>
 
     </div>
@@ -790,7 +797,8 @@
             <h3 style="font-size: 1.1rem; color: #ffffff;">5. Selection State</h3>
             <span class="code-badge">:checked</span>
           </div>
-          <p class="demo-desc">Pure CSS toggle switch created without JavaScript using checkbox <code>:checked</code>.</p>
+          <p class="demo-desc">Pure CSS toggle switch created without JavaScript using checkbox <code>:checked</code>.
+          </p>
         </div>
         <div class="demo-stage">
           <label class="toggle-switch">
@@ -799,7 +807,8 @@
           </label>
           <span style="font-size: 0.8rem; color: #cbd5e1;">Click toggle to toggle state</span>
         </div>
-        <div style="font-size: 0.75rem; color: #64748b; font-family: monospace;">input:checked + .slider { background: #6366f1; }</div>
+        <div style="font-size: 0.75rem; color: #64748b; font-family: monospace;">input:checked + .slider { background:
+          #6366f1; }</div>
       </div>
 
       <!-- :disabled & :enabled -->
@@ -815,7 +824,8 @@
           <button type="button" class="btn-disabled-demo">Enabled</button>
           <button type="button" class="btn-disabled-demo" disabled>Disabled</button>
         </div>
-        <div style="font-size: 0.75rem; color: #64748b; font-family: monospace;">button:disabled { cursor: not-allowed; }</div>
+        <div style="font-size: 0.75rem; color: #64748b; font-family: monospace;">button:disabled { cursor: not-allowed;
+          }</div>
       </div>
 
       <!-- :valid & :invalid -->
@@ -830,7 +840,8 @@
         <div class="demo-stage">
           <input type="email" class="form-val-demo" placeholder="Type email: test@domain.com" required>
         </div>
-        <div style="font-size: 0.75rem; color: #64748b; font-family: monospace;">input:valid { border-color: #10b981; }</div>
+        <div style="font-size: 0.75rem; color: #64748b; font-family: monospace;">input:valid { border-color: #10b981; }
+        </div>
       </div>
 
       <!-- :placeholder-shown -->
@@ -848,8 +859,10 @@
             <label for="floatingInput" class="floating-label">Enter Student Roll Number</label>
           </div>
         </div>
-        <div style="font-size: 0.75rem; color: #64748b; font-family: monospace;">input:not(:placeholder-shown) + label { top: 2px; }</div>
+        <div style="font-size: 0.75rem; color: #64748b; font-family: monospace;">input:not(:placeholder-shown) + label {
+          top: 2px; }</div>
       </div>
+
 
     </div>
 
@@ -878,14 +891,31 @@
               </tr>
             </thead>
             <tbody>
-              <tr><td>HTML5 Forms</td><td>Sem III</td><td>98%</td></tr>
-              <tr><td>CSS Selectors</td><td>Sem III</td><td>95%</td></tr>
-              <tr><td>JavaScript DOM</td><td>Sem III</td><td>94%</td></tr>
-              <tr><td>DHTML Records</td><td>Sem III</td><td>96%</td></tr>
+              <tr>
+                <td>HTML5 Forms</td>
+                <td>Sem III</td>
+                <td>98%</td>
+              </tr>
+              <tr>
+                <td>CSS Selectors</td>
+                <td>Sem III</td>
+                <td>95%</td>
+              </tr>
+              <tr>
+                <td>JavaScript DOM</td>
+                <td>Sem III</td>
+                <td>94%</td>
+              </tr>
+              <tr>
+                <td>DHTML Records</td>
+                <td>Sem III</td>
+                <td>96%</td>
+              </tr>
             </tbody>
           </table>
         </div>
-        <div style="font-size: 0.75rem; color: #64748b; font-family: monospace;">tr:nth-child(even) { background: #1e293b; }</div>
+        <div style="font-size: 0.75rem; color: #64748b; font-family: monospace;">tr:nth-child(even) { background:
+          #1e293b; }</div>
       </div>
 
       <!-- :first-child & :last-child -->
@@ -905,7 +935,8 @@
             <li><span>Shutdown Routine (4)</span> <span>[LAST-CHILD]</span></li>
           </ul>
         </div>
-        <div style="font-size: 0.75rem; color: #64748b; font-family: monospace;">li:first-child { border-left-color: #10b981; }</div>
+        <div style="font-size: 0.75rem; color: #64748b; font-family: monospace;">li:first-child { border-left-color:
+          #10b981; }</div>
       </div>
 
       <!-- :not() -->
@@ -924,7 +955,8 @@
             <div class="not-item">Item 3</div>
           </div>
         </div>
-        <div style="font-size: 0.75rem; color: #64748b; font-family: monospace;">.item:not(.special) { border: 1px dashed; }</div>
+        <div style="font-size: 0.75rem; color: #64748b; font-family: monospace;">.item:not(.special) { border: 1px
+          dashed; }</div>
       </div>
 
       <!-- :target -->
@@ -948,14 +980,18 @@
     <div id="target-modal" class="css-modal">
       <div class="css-modal-content">
         <a href="#" class="css-modal-close" title="Close Modal">&times;</a>
-        <span style="background: rgba(6, 182, 212, 0.15); color: #22d3ee; padding: 0.2rem 0.65rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 700;">
+        <span
+          style="background: rgba(6, 182, 212, 0.15); color: #22d3ee; padding: 0.2rem 0.65rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 700;">
           STATE: :TARGET ACTIVATED
         </span>
         <h3 style="font-size: 1.4rem; color: #ffffff; margin: 0.5rem 0;">Pure CSS Modal Activated!</h3>
         <p style="color: #cbd5e1; font-size: 0.9rem; margin-bottom: 1rem;">
-          This dialog appears entirely without executing a single line of JavaScript. When you clicked the button, the browser URL updated to <code>#target-modal</code>, matching the CSS selector <code>#target-modal:target</code>.
+          This dialog appears entirely without executing a single line of JavaScript. When you clicked the button, the
+          browser URL updated to <code>#target-modal</code>, matching the CSS selector
+          <code>#target-modal:target</code>.
         </p>
-        <div style="background: #0f172a; padding: 0.75rem; border-radius: 8px; border: 1px solid #334155; font-family: monospace; font-size: 0.8rem; color: #818cf8; margin-bottom: 1.25rem;">
+        <div
+          style="background: #0f172a; padding: 0.75rem; border-radius: 8px; border: 1px solid #334155; font-family: monospace; font-size: 0.8rem; color: #818cf8; margin-bottom: 1.25rem;">
           #target-modal:target { display: flex; }
         </div>
         <a href="#" class="btn-nav" style="display: inline-block; padding: 0.6rem 1.25rem;">
@@ -967,18 +1003,23 @@
     <!-- INTERACTIVE CSS SANDBOX -->
     <section class="sandbox-container">
       <div style="text-align: center; margin-bottom: 1.5rem;">
-        <span style="background: rgba(99, 102, 241, 0.2); color: #a5b4fc; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.8rem; font-weight: 700;">
+        <span
+          style="background: rgba(99, 102, 241, 0.2); color: #a5b4fc; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.8rem; font-weight: 700;">
           LABORATORY WORKBENCH
         </span>
         <h2 style="font-size: 1.75rem; color: #ffffff; margin: 0.5rem 0 0.25rem;">Live Pseudo-Class Sandbox</h2>
-        <p style="color: #94a3b8; font-size: 0.95rem;">Test how different pseudo-classes transform this target element in real time</p>
+        <p style="color: #94a3b8; font-size: 0.95rem;">Test how different pseudo-classes transform this target element
+          in real time</p>
       </div>
 
       <div style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;">
         <button type="button" class="btn-nav" onclick="applySandboxClass('hover-mode')">Simulate :hover Glow</button>
-        <button type="button" class="btn-nav" onclick="applySandboxClass('active-mode')" style="background: #10b981;">Simulate :active Press</button>
-        <button type="button" class="btn-nav" onclick="applySandboxClass('focus-mode')" style="background: #06b6d4;">Simulate :focus Ring</button>
-        <button type="button" class="btn-nav" onclick="resetSandbox()" style="background: #475569;">Reset Element</button>
+        <button type="button" class="btn-nav" onclick="applySandboxClass('active-mode')"
+          style="background: #10b981;">Simulate :active Press</button>
+        <button type="button" class="btn-nav" onclick="applySandboxClass('focus-mode')"
+          style="background: #06b6d4;">Simulate :focus Ring</button>
+        <button type="button" class="btn-nav" onclick="resetSandbox()" style="background: #475569;">Reset
+          Element</button>
       </div>
 
       <div class="sandbox-preview-box">
@@ -1003,25 +1044,31 @@
         Experiment 18 &bull; Technical Lab Report (CSS Pseudo-Classes Architecture)
       </h3>
       <p style="color: #cbd5e1; font-size: 0.9rem;">
-        CSS Pseudo-classes allow developers to dynamically style elements based on their runtime state, user interactions, or structural position in the DOM hierarchy without injecting redundant inline classes or DOM mutation scripts.
+        CSS Pseudo-classes allow developers to dynamically style elements based on their runtime state, user
+        interactions, or structural position in the DOM hierarchy without injecting redundant inline classes or DOM
+        mutation scripts.
       </p>
 
       <div class="tech-grid">
         <div class="tech-card">
           <h4>1. Dynamic State Selectors</h4>
-          <p>Pseudo-classes like <code>:hover</code>, <code>:active</code>, and <code>:focus</code> listen directly to browser input events, enabling fluid reactive UI styling with zero JavaScript overhead.</p>
+          <p>Pseudo-classes like <code>:hover</code>, <code>:active</code>, and <code>:focus</code> listen directly to
+            browser input events, enabling fluid reactive UI styling with zero JavaScript overhead.</p>
         </div>
         <div class="tech-card">
           <h4>2. Tree Structural Selectors</h4>
-          <p>Patterns like <code>:nth-child(even)</code>, <code>:first-child</code>, and <code>:not()</code> compute document tree positions mathematically, perfect for tables and alternating lists.</p>
+          <p>Patterns like <code>:nth-child(even)</code>, <code>:first-child</code>, and <code>:not()</code> compute
+            document tree positions mathematically, perfect for tables and alternating lists.</p>
         </div>
         <div class="tech-card">
           <h4>3. Pure CSS State Machines</h4>
-          <p>By leveraging <code>:checked</code> and <code>:target</code>, developers can implement accessible toggles, modals, and tabs purely through declarative CSS rules.</p>
+          <p>By leveraging <code>:checked</code> and <code>:target</code>, developers can implement accessible toggles,
+            modals, and tabs purely through declarative CSS rules.</p>
         </div>
         <div class="tech-card">
           <h4>4. Specificity &amp; Performance</h4>
-          <p>Pseudo-classes contribute 0,1,0 to CSS specificity (equivalent to a class selector), and are heavily accelerated by modern GPU styling pipelines.</p>
+          <p>Pseudo-classes contribute 0,1,0 to CSS specificity (equivalent to a class selector), and are heavily
+            accelerated by modern GPU styling pipelines.</p>
         </div>
       </div>
     </section>
@@ -1031,7 +1078,8 @@
   <!-- Footer -->
   <footer>
     <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #cbd5e1;">
-      Designed &amp; Developed by <strong style="color: #818cf8;">Atul Anand</strong> &bull; BCA (Hons.) with Research (Semester III)
+      Designed &amp; Developed by <strong style="color: #818cf8;">Atul Anand</strong> &bull; BCA (Hons.) with Research
+      (Semester III)
     </p>
     <p style="margin: 0; color: #64748b; font-size: 0.8rem;">
       Amity University Noida &bull; CSIT248: Advanced Web Technology &bull; Experiment 18 Complete
