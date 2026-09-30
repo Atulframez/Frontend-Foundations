@@ -1,0 +1,8 @@
+[build]
+  publish = "HTML-LAB-WORK"
+
+[[redirects]]
+  from = "/HTML-LAB-WORK/*"
+  to = "/:splat"
+  status = 301
+  force = true
