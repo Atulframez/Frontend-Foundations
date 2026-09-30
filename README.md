@@ -40,6 +40,76 @@ The entire laboratory portfolio is deployed live on Netlify:
 
 ---
 
+## 🏗️ Architecture
+
+The Frontend Foundations & CSIT248 portfolio architecture is engineered for dual-mode execution: instantaneous sub-50ms static delivery via Netlify Edge CDN, and modular server-side processing powered by PHP 8.x, XML DOM parsing, and MySQL relational backends.
+
+### High-Level Flow
+
+```mermaid
+flowchart TD
+    User(["👤 Client / Evaluator (Browser)"])
+    
+    User -->|HTTP / HTTPS Navigation| Gateway["🌐 Netlify Edge & Root Router<br/><code>index.html</code> ➔ <code>HTML-LAB-WORK/</code>"]
+    
+    Gateway -->|Static Lab Assets (Exp 01–18)| ClientEngine["⚡ Client-Side Interactive Engine<br/>• HTML5 Semantic Controls<br/>• CSS3 Pseudo-Classes Studio<br/>• Vanilla JS Regex & DHTML"]
+    
+    Gateway -->|Dynamic Server Requests (Exp 13, 19–22)| PHPEngine["🐘 PHP 8.x Runtime Engine<br/>(Apache / XAMPP Server)"]
+    
+    PHPEngine -->|DOM / XPath Query| XMLStore[("📄 XML Data Store<br/><code>students.xml</code> (SEM VI IT)")]
+    XMLStore -->|Parsed Student Record & Marks| PHPEngine
+    
+    PHPEngine -->|Prepared SQL Statements| MySQLStore[("🗄️ MySQL Database (PDO)<br/><code>CUSTOMER</code> & <code>EMPLOYEES</code>")]
+    MySQLStore -->|ResultSet & Affected Rows| PHPEngine
+    
+    PHPEngine -->|Rendered HTML / Response Payload| Gateway
+    
+    Gateway -->|Inspect Response & Data Integrity| Decision{"Validation &<br/>Execution Valid?"}
+    
+    Decision -->|Yes: Valid Data / Record Found| Success["✅ Render Interactive Scorecard & Data Grid"]
+    Decision -->|No: Not Found / Invalid Input| Failure["❌ Trigger Inline Alert & Error State"]
+
+    style Success fill:#10b981,stroke:#047857,color:#ffffff,stroke-width:2px
+    style Failure fill:#e11d48,stroke:#9f1239,color:#ffffff,stroke-width:2px
+    style User fill:#3b82f6,stroke:#1d4ed8,color:#ffffff,stroke-width:2px
+    style Gateway fill:#1e293b,stroke:#475569,color:#f8fafc,stroke-width:1.5px
+    style ClientEngine fill:#1e293b,stroke:#475569,color:#f8fafc,stroke-width:1.5px
+    style PHPEngine fill:#1e293b,stroke:#475569,color:#f8fafc,stroke-width:1.5px
+    style XMLStore fill:#0f172a,stroke:#3b82f6,color:#f8fafc,stroke-width:1.5px
+    style MySQLStore fill:#0f172a,stroke:#3b82f6,color:#f8fafc,stroke-width:1.5px
+    style Decision fill:#334155,stroke:#64748b,color:#f8fafc,stroke-width:1.5px
+```
+
+### Component & Execution Flow
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant Frontend as 🖥️ Client UI (HTML-LAB-WORK)
+    participant PHP as 🐘 PHP 8.x Runtime
+    participant XML as 📄 XML Engine (students.xml)
+    participant MySQL as 🗄️ MySQL Database (PDO)
+
+    %% Flow A: XML Student Lookup (Exp 13)
+    Note over Frontend,XML: Flow A: Student XML Lookup & Score Calculation (Exp 13)
+    Frontend->>PHP: POST student_lookup.php { enrollment_no: "2024BCAR001" }
+    PHP->>XML: simplexml_load_file("students.xml") -> xpath("//student")
+    XML-->>PHP: "Aarav Sharma" | Marks: [88, 92, 79, 95, 84]
+    PHP->>PHP: computeTotal(438/500) & computePercentage(87.6%)
+    PHP-->>Frontend: { status: 200, html_scorecard, badge: "Distinction" }
+    Frontend->>Frontend: UI Transition to Rendered Scorecard State
+
+    %% Flow B: MySQL Prepared DML Transaction (Exp 19 & 22)
+    Note over Frontend,MySQL: Flow B: MySQL DML Execution (Exp 19 & 22)
+    Frontend->>PHP: POST mysql_crud_demo.php { action: "UPDATE", id: 101, salary: 85000 }
+    PHP->>MySQL: PDO->prepare("UPDATE employees SET salary = ? WHERE id = ?")
+    MySQL-->>PHP: { status: "success", affected_rows: 1 }
+    PHP-->>Frontend: { status: 200, records: [...], notification: "Record Updated" }
+    Frontend->>Frontend: UI Transition to Updated Data Grid
+```
+
+---
+
 ## ⚡ Highlighted PHP, XML & MySQL Experiments (Inside `HTML-LAB-WORK/`)
 
 ### [Experiment 13: Student XML Database & Server-Side Lookup](https://atulanand-web-tech-labwork.netlify.app/HTML-LAB-WORK/experiment-13/)
