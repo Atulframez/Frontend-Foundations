@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Experiment 19: Write a PHP Script to add new record in CUSTOMER database - CSIT248 Advanced Web Technology">
+  <title>Experiment 19 - Add New Record in CUSTOMER Database (PHP &amp; MySQL)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --primary: #6366f1;
+      --primary-hover: #4f46e5;
+      --secondary: #06b6d4;
+      --accent: #f43f5e;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --bg-dark: #0f172a;
+      --card-bg: #1e293b;
+      --card-border: #334155;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Sticky Navigation */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-brand {
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: #818cf8;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-brand span {
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .nav-btn {
+      background: var(--primary);
+      color: #ffffff;
+      padding: 0.45rem 1rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+
+    .nav-btn:hover {
+      background: var(--primary-hover);
+    }
+
+    /* Main Container */
+    main {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem;
+      flex: 1;
+    }
+
+    /* Page Header */
+    .page-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .badge-pill {
+      display: inline-block;
+      background: rgba(99, 102, 241, 0.15);
+      color: #a5b4fc;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      padding: 0.3rem 0.9rem;
+      border-radius: 9999px;
+      font-size: 0.825rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .page-title {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 0.5rem;
+    }
+
+    .page-subtitle {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    /* Tab Controller */
+    .tabs-nav {
+      display: flex;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--card-border);
+      margin-bottom: 2rem;
+      overflow-x: auto;
+      padding-bottom: 0.25rem;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 0.75rem 1.25rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 8px 8px 0 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s;
+    }
+
+    .tab-btn:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .tab-btn.active {
+      color: #38bdf8;
+      background: var(--card-bg);
+      border-bottom: 2px solid #38bdf8;
+    }
+
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Layout */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 400px 1fr;
+      gap: 1.75rem;
+    }
+
+    @media (max-width: 950px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 1.75rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #38bdf8;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 0.75rem;
+    }
+
+    /* Form Fields */
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #cbd5e1;
+      margin-bottom: 0.35rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      background: #0f172a;
+      border: 1px solid #475569;
+      color: #ffffff;
+      padding: 0.65rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--primary);
+    }
+
+    .btn-primary {
+      width: 100%;
+      background: linear-gradient(135deg, #6366f1, #4f46e5);
+      color: white;
+      border: none;
+      padding: 0.85rem 1.25rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.3);
+      transition: all 0.2s;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(99, 102, 241, 0.45);
+    }
+
+    .alert-box {
+      padding: 0.85rem 1rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      margin-bottom: 1.25rem;
+      display: none;
+    }
+
+    .alert-box.success {
+      display: block;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid var(--success);
+      color: #6ee7b7;
+    }
+
+    .alert-box.error {
+      display: block;
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid var(--danger);
+      color: #fca5a5;
+    }
+
+    /* Table Styles */
+    .table-container {
+      overflow-x: auto;
+      margin-top: 1rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+
+    th,
+    td {
+      padding: 0.75rem 0.9rem;
+      text-align: left;
+      border-bottom: 1px solid #334155;
+    }
+
+    th {
+      background: #0f172a;
+      color: #38bdf8;
+      font-weight: 600;
+    }
+
+    tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    /* SQL Live Query Box */
+    .sql-preview-box {
+      margin-top: 1.25rem;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 1rem;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.8rem;
+      color: #e2e8f0;
+    }
+
+    .sql-preview-box .query-label {
+      color: #a5b4fc;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+      display: block;
+    }
+
+    /* Code Viewers */
+    .code-container {
+      background: #0f172a;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .code-header {
+      background: #1e293b;
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .code-header span {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
+      color: #38bdf8;
+    }
+
+    .btn-copy {
+      background: #334155;
+      color: #f8fafc;
+      border: 1px solid #475569;
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-copy:hover {
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+
+    pre code {
+      display: block;
+      padding: 1.25rem;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: #e2e8f0;
+      overflow-x: auto;
+      white-space: pre;
+    }
+
+    footer {
+      background: #0b1120;
+      border-top: 1px solid var(--card-border);
+      padding: 1.5rem 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="../index.html" class="nav-brand">
+      <span>&larr;</span> CSIT248 Lab Work
+    </a>
+    <div class="nav-links">
+      <span style="font-size: 0.85rem; color: #a5b4fc; background: rgba(99, 102, 241, 0.15); border: 1px solid rgba(99, 102, 241, 0.3); padding: 0.3rem 0.75rem; border-radius: 9999px; font-weight: 600;">
+        MySQL &amp; PHP Connectivity
+      </span>
+      <a href="../index.html" class="nav-btn">All Experiments</a>
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <main>
+
+    <!-- Header -->
+    <header class="page-header">
+      <span class="badge-pill">Experiment 19 &bull; Module PHP &amp; MySQL Connectivity</span>
+      <h1 class="page-title">Add New Record in CUSTOMER Database</h1>
+      <p class="page-subtitle">
+        Design and implementation of a PHP script utilizing PDO/MySQL prepared statements to insert new customer records into a relational database with strict validation and error handling.
+      </p>
+    </header>
+
+    <!-- Tabs Nav -->
+    <div class="tabs-nav">
+      <button class="tab-btn active" onclick="switchTab('demo', this)">
+        ⚡ Live Interactive Studio
+      </button>
+      <button class="tab-btn" onclick="switchTab('php', this)">
+        🐘 add_customer.php (Server Script)
+      </button>
+      <button class="tab-btn" onclick="switchTab('sql', this)">
+        🗄️ customer_schema.sql (Database DDL)
+      </button>
+      <button class="tab-btn" onclick="switchTab('theory', this)">
+        📘 Theory &amp; Lab Manual
+      </button>
+    </div>
+
+    <!-- TAB 1: Live Interactive Studio -->
+    <section id="tab-demo" class="tab-panel active">
+      <div class="grid-2">
+
+        <!-- Form Column -->
+        <div class="card">
+          <h2 class="card-title">➕ Customer Registration Form</h2>
+
+          <div id="status-alert" class="alert-box"></div>
+
+          <form id="customer-form" onsubmit="handleCustomerInsert(event)">
+            <div class="form-group">
+              <label for="c-name">Full Name *</label>
+              <input type="text" id="c-name" required placeholder="e.g. Atul Anand">
+            </div>
+
+            <div class="form-group">
+              <label for="c-email">Email Address *</label>
+              <input type="email" id="c-email" required placeholder="e.g. atul@example.com">
+            </div>
+
+            <div class="form-group">
+              <label for="c-phone">Phone Number *</label>
+              <input type="text" id="c-phone" required placeholder="e.g. +91 98765 43210">
+            </div>
+
+            <div class="form-group">
+              <label for="c-city">City *</label>
+              <input type="text" id="c-city" required placeholder="e.g. Noida / New Delhi">
+            </div>
+
+            <div class="form-group">
+              <label for="c-address">Street Address *</label>
+              <textarea id="c-address" rows="2" required placeholder="e.g. Sector 125, Amity Campus"></textarea>
+            </div>
+
+            <button type="submit" class="btn-primary">
+              💾 Execute SQL INSERT Statement
+            </button>
+          </form>
+
+          <div class="sql-preview-box">
+            <span class="query-label">Generated Prepared SQL:</span>
+            <code>INSERT INTO customers (customer_name, email, phone, address, city)<br>VALUES (?, ?, ?, ?, ?);</code>
+          </div>
+        </div>
+
+        <!-- Table Column -->
+        <div class="card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; border-bottom: 1px solid var(--card-border); padding-bottom: 0.75rem;">
+            <h2 class="card-title" style="margin-bottom: 0; border-bottom: none; padding-bottom: 0;">
+              📋 Relational Database Records (Table: customers)
+            </h2>
+            <button type="button" class="btn-copy" onclick="resetDefaultCustomers()">🔄 Reset</button>
+          </div>
+
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Customer Name</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>City</th>
+                </tr>
+              </thead>
+              <tbody id="customers-table-body">
+                <!-- Dynamically rendered -->
+              </tbody>
+            </table>
+          </div>
+
+          <div style="margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: var(--text-muted);">
+            <span>Database: <strong style="color: #38bdf8;">customer_db</strong></span>
+            <span>Total Records: <strong style="color: #10b981;" id="record-count">4</strong></span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TAB 2: add_customer.php Source -->
+    <section id="tab-php" class="tab-panel">
+      <div class="card">
+        <div class="code-container">
+          <div class="code-header">
+            <span>add_customer.php (PHP Prepared Statement &amp; PDO)</span>
+            <button class="btn-copy" onclick="copyCode('code-php', this)">📋 Copy Script</button>
+          </div>
+          <pre><code id="code-php">&lt;?php
+/**
+ * Experiment 19: PHP Script to Add New Record in CUSTOMER Database
+ * Course: Advanced Web Technology (CSIT248) - Amity University Noida
+ */
+
+$host = 'localhost';
+$user = 'root';
+$pass = ''; // Default XAMPP password
+$db   = 'customer_db';
+
+try {
+    // 1. Establish PDO Connection
+    $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8mb4", $user, $pass, [
+        PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+    ]);
+
+    // 2. Handle Form POST Submission
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $name    = trim($_POST['customer_name'] ?? '');
+        $email   = trim($_POST['email'] ?? '');
+        $phone   = trim($_POST['phone'] ?? '');
+        $address = trim($_POST['address'] ?? '');
+        $city    = trim($_POST['city'] ?? '');
+
+        // Validation
+        if (empty($name) || empty($email) || empty($phone) || empty($address) || empty($city)) {
+            die("Error: All fields are required.");
+        }
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            die("Error: Invalid email format.");
+        }
+
+        // 3. Prepare and Execute INSERT query
+        $sql = "INSERT INTO customers (customer_name, email, phone, address, city) 
+                VALUES (:name, :email, :phone, :address, :city)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+            ':name'    => $name,
+            ':email'   => $email,
+            ':phone'   => $phone,
+            ':address' => $address,
+            ':city'    => $city
+        ]);
+
+        $insertedId = $pdo->lastInsertId();
+        echo "Customer successfully created with ID: #" . $insertedId;
+    }
+} catch (PDOException $e) {
+    if ($e->getCode() == 23000) {
+        echo "Error: A customer with this email already exists.";
+    } else {
+        echo "Database Connection Error: " . $e->getMessage();
+    }
+}
+?&gt;</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: customer_schema.sql Source -->
+    <section id="tab-sql" class="tab-panel">
+      <div class="card">
+        <div class="code-container">
+          <div class="code-header">
+            <span>customer_schema.sql (MySQL Table DDL &amp; Seed Data)</span>
+            <button class="btn-copy" onclick="copyCode('code-sql', this)">📋 Copy SQL</button>
+          </div>
+          <pre><code id="code-sql">-- Experiment 19: Database Schema for CUSTOMER Database
+CREATE DATABASE IF NOT EXISTS customer_db;
+USE customer_db;
+
+-- Create CUSTOMERS Table
+CREATE TABLE IF NOT EXISTS customers (
+    customer_id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_name VARCHAR(100) NOT NULL,
+    email VARCHAR(120) NOT NULL UNIQUE,
+    phone VARCHAR(20) NOT NULL,
+    address TEXT NOT NULL,
+    city VARCHAR(60) NOT NULL,
+    registered_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Seed Sample Records
+INSERT INTO customers (customer_name, email, phone, address, city) VALUES
+('Atul Anand', 'atul.anand@example.com', '+91 98765 43210', 'Sector 125, Express Highway', 'Noida'),
+('Priya Sharma', 'priya.sharma@example.com', '+91 98123 45678', 'Connaught Place, Central Delhi', 'New Delhi'),
+('Rohan Verma', 'rohan.verma@example.com', '+91 97234 56789', 'Boring Road, Near Canal', 'Patna'),
+('Ananya Sengupta', 'ananya.s@example.com', '+91 96345 67890', 'Park Street, South Block', 'Kolkata');</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: Theory & Lab Manual -->
+    <section id="tab-theory" class="tab-panel">
+      <div class="card" style="line-height: 1.8;">
+        <h2 style="color: #38bdf8; font-size: 1.5rem; margin-bottom: 1rem;">Experiment 19: Academic Lab Manual</h2>
+
+        <h3 style="color: #818cf8; margin-top: 1.5rem; margin-bottom: 0.5rem;">1. Aim</h3>
+        <p style="color: #cbd5e1;">
+          To write a robust PHP script that connects to MySQL, accepts customer details via an interactive HTML form, sanitizes and validates input data, and adds a new record to the <code>customers</code> table using prepared statements to prevent SQL Injection attacks.
+        </p>
+
+        <h3 style="color: #818cf8; margin-top: 1.5rem; margin-bottom: 0.5rem;">2. Core Concepts</h3>
+        <ul style="color: #cbd5e1; margin-left: 1.5rem;">
+          <li><strong>PDO (PHP Data Objects):</strong> A lightweight, consistent interface for accessing databases in PHP. Offers prepared statements, transactions, and robust error modes.</li>
+          <li><strong>SQL Injection Prevention:</strong> Direct string interpolation allows attackers to manipulate queries. Prepared statements separate the SQL template from data parameters, guaranteeing immunity from SQL injection.</li>
+          <li><strong>Unique Constraint Handling:</strong> The <code>email</code> column has a <code>UNIQUE</code> index; attempting to insert duplicate emails triggers error code <code>23000</code>, which is caught and gracefully handled.</li>
+        </ul>
+
+        <h3 style="color: #818cf8; margin-top: 1.5rem; margin-bottom: 0.5rem;">3. Algorithm</h3>
+        <ol style="color: #cbd5e1; margin-left: 1.5rem;">
+          <li>Create MySQL database <code>customer_db</code> and table <code>customers</code>.</li>
+          <li>Render an HTML form with input fields for Name, Email, Phone, City, and Address.</li>
+          <li>Capture user form submission via HTTP POST.</li>
+          <li>Validate that required fields are not empty and verify email syntax via <code>filter_var()</code>.</li>
+          <li>Establish a PDO connection with exception error mode enabled.</li>
+          <li>Prepare the SQL <code>INSERT INTO customers ...</code> query with bound placeholders.</li>
+          <li>Execute the query passing sanitized input values.</li>
+          <li>Fetch the auto-incremented primary key using <code>lastInsertId()</code> and inform the user.</li>
+          <li>Query all records using <code>SELECT * FROM customers</code> and display in an HTML table.</li>
+        </ol>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p style="margin-bottom: 0.4rem;">
+      Designed &amp; Developed by <strong style="color: #818cf8;">Atul Anand</strong> &bull; BCA (Hons.) with Research &bull; Semester III
+    </p>
+    <p style="color: #64748b; font-size: 0.8rem;">
+      Amity University Noida &bull; Department of Computer Applications &bull; CSIT248: Advanced Web Technology
+    </p>
+  </footer>
+
+  <!-- Script for Live Simulation -->
+  <script>
+    const INITIAL_CUSTOMERS = [
+      { id: 101, name: "Atul Anand", email: "atul.anand@example.com", phone: "+91 98765 43210", city: "Noida", address: "Sector 125, Amity Campus" },
+      { id: 102, name: "Priya Sharma", email: "priya.sharma@example.com", phone: "+91 98123 45678", city: "New Delhi", address: "Connaught Place, Central Block" },
+      { id: 103, name: "Rohan Verma", email: "rohan.verma@example.com", phone: "+91 97234 56789", city: "Patna", address: "Boring Road, Near Canal" },
+      { id: 104, name: "Ananya Sengupta", email: "ananya.s@example.com", phone: "+91 96345 67890", city: "Kolkata", address: "Park Street, South Block" }
+    ];
+
+    let customers = JSON.parse(JSON.stringify(INITIAL_CUSTOMERS));
+    let nextId = 105;
+
+    function renderCustomersTable() {
+      const tbody = document.getElementById("customers-table-body");
+      tbody.innerHTML = "";
+
+      customers.forEach(c => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td style="font-family: 'Fira Code', monospace; color: #a5b4fc;">#${c.id}</td>
+          <td><strong style="color: #ffffff;">${escapeHtml(c.name)}</strong></td>
+          <td style="color: #94a3b8;">${escapeHtml(c.email)}</td>
+          <td style="font-family: 'Fira Code', monospace; color: #cbd5e1;">${escapeHtml(c.phone)}</td>
+          <td><span style="background: rgba(56, 189, 248, 0.12); color: #38bdf8; padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: 500;">${escapeHtml(c.city)}</span></td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      document.getElementById("record-count").textContent = customers.length;
+    }
+
+    function handleCustomerInsert(e) {
+      e.preventDefault();
+      const alertBox = document.getElementById("status-alert");
+      alertBox.className = "alert-box";
+
+      const name = document.getElementById("c-name").value.trim();
+      const email = document.getElementById("c-email").value.trim();
+      const phone = document.getElementById("c-phone").value.trim();
+      const city = document.getElementById("c-city").value.trim();
+      const address = document.getElementById("c-address").value.trim();
+
+      // Check duplicate email
+      const exists = customers.some(c => c.email.toLowerCase() === email.toLowerCase());
+      if (exists) {
+        alertBox.className = "alert-box error";
+        alertBox.innerHTML = `⚠️ <strong>Integrity Constraint Violation:</strong> A customer with email '<em>${escapeHtml(email)}</em>' already exists.`;
+        return;
+      }
+
+      // Add to array
+      const newCustomer = {
+        id: nextId++,
+        name,
+        email,
+        phone,
+        city,
+        address
+      };
+
+      customers.unshift(newCustomer);
+      renderCustomersTable();
+
+      alertBox.className = "alert-box success";
+      alertBox.innerHTML = `✅ <strong>Success:</strong> Record added! Assigned Customer ID <code>#${newCustomer.id}</code> in database.`;
+
+      // Reset form fields
+      document.getElementById("customer-form").reset();
+
+      setTimeout(() => {
+        alertBox.style.display = "none";
+      }, 5000);
+    }
+
+    function resetDefaultCustomers() {
+      customers = JSON.parse(JSON.stringify(INITIAL_CUSTOMERS));
+      nextId = 105;
+      renderCustomersTable();
+      const alertBox = document.getElementById("status-alert");
+      alertBox.className = "alert-box success";
+      alertBox.innerHTML = "🔄 Customer database reset to default state.";
+      setTimeout(() => { alertBox.style.display = "none"; }, 3000);
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+    }
+
+    function switchTab(tabId, btn) {
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('tab-' + tabId).classList.add('active');
+      btn.classList.add('active');
+    }
+
+    function copyCode(elementId, btn) {
+      const text = document.getElementById(elementId).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const orig = btn.innerText;
+        btn.innerText = "Copied! ✅";
+        btn.style.background = "#10b981";
+        setTimeout(() => {
+          btn.innerText = orig;
+          btn.style.background = "";
+        }, 2000);
+      });
+    }
+
+    window.addEventListener("DOMContentLoaded", renderCustomersTable);
+  </script>
+
+</body>
+
+</html>

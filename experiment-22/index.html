@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Experiment 22: Write a PHP Script to implement MySQL commands: a) DELETE b) ORDER BY c) UPDATE - CSIT248 Advanced Web Technology">
+  <title>Experiment 22 - MySQL DELETE, ORDER BY &amp; UPDATE Operations</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --primary: #6366f1;
+      --primary-hover: #4f46e5;
+      --secondary: #06b6d4;
+      --accent: #f43f5e;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --bg-dark: #0f172a;
+      --card-bg: #1e293b;
+      --card-border: #334155;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Sticky Navigation */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-brand {
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: #818cf8;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-brand span {
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .nav-btn {
+      background: var(--primary);
+      color: #ffffff;
+      padding: 0.45rem 1rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+
+    .nav-btn:hover {
+      background: var(--primary-hover);
+    }
+
+    /* Main Container */
+    main {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem;
+      flex: 1;
+    }
+
+    /* Header */
+    .page-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .badge-pill {
+      display: inline-block;
+      background: rgba(99, 102, 241, 0.15);
+      color: #a5b4fc;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      padding: 0.3rem 0.9rem;
+      border-radius: 9999px;
+      font-size: 0.825rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .page-title {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 0.5rem;
+    }
+
+    .page-subtitle {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    /* Tabs Nav */
+    .tabs-nav {
+      display: flex;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--card-border);
+      margin-bottom: 2rem;
+      overflow-x: auto;
+      padding-bottom: 0.25rem;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 0.75rem 1.25rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 8px 8px 0 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s;
+    }
+
+    .tab-btn:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .tab-btn.active {
+      color: #38bdf8;
+      background: var(--card-bg);
+      border-bottom: 2px solid #38bdf8;
+    }
+
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 1.75rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #38bdf8;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 0.75rem;
+    }
+
+    /* Interactive Table */
+    .table-container {
+      overflow-x: auto;
+      margin-top: 1rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    th, td {
+      padding: 0.85rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid #334155;
+    }
+
+    th {
+      background: #0f172a;
+      color: #38bdf8;
+      font-weight: 600;
+      user-select: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    th:hover {
+      background: #1e293b;
+      color: #818cf8;
+    }
+
+    th.active-sort {
+      color: #34d399;
+    }
+
+    .btn-action {
+      padding: 0.35rem 0.65rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+      margin-right: 0.35rem;
+    }
+
+    .btn-update {
+      background: #6366f1;
+      color: #ffffff;
+    }
+
+    .btn-update:hover {
+      background: #4f46e5;
+    }
+
+    .btn-delete {
+      background: rgba(239, 68, 68, 0.2);
+      border: 1px solid var(--danger);
+      color: #fca5a5;
+    }
+
+    .btn-delete:hover {
+      background: #ef4444;
+      color: #ffffff;
+    }
+
+    /* Modal / Edit Card */
+    .edit-box {
+      background: #0f172a;
+      border: 1px solid #38bdf8;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      animation: fadeIn 0.3s;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #cbd5e1;
+      margin-bottom: 0.35rem;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      background: #1e293b;
+      border: 1px solid #475569;
+      color: #ffffff;
+      padding: 0.65rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #38bdf8;
+    }
+
+    /* Query Inspector */
+    .sql-inspector {
+      background: #090d16;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 1.25rem;
+      margin-top: 1.5rem;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
+    }
+
+    .sql-inspector .label {
+      color: #a5b4fc;
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .sql-inspector code {
+      color: #38bdf8;
+      display: block;
+      white-space: pre-wrap;
+    }
+
+    /* Code Viewers */
+    .code-container {
+      background: #0f172a;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+
+    .code-header {
+      background: #1e293b;
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .code-header span {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
+      color: #38bdf8;
+    }
+
+    .btn-copy {
+      background: #334155;
+      color: #f8fafc;
+      border: 1px solid #475569;
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+
+    pre code {
+      display: block;
+      padding: 1.25rem;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: #e2e8f0;
+      overflow-x: auto;
+      white-space: pre;
+    }
+
+    footer {
+      background: #0b1120;
+      border-top: 1px solid var(--card-border);
+      padding: 1.5rem 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="../index.html" class="nav-brand">
+      <span>&larr;</span> CSIT248 Lab Work
+    </a>
+    <div class="nav-links">
+      <span style="font-size: 0.85rem; color: #a5b4fc; background: rgba(99, 102, 241, 0.15); border: 1px solid rgba(99, 102, 241, 0.3); padding: 0.3rem 0.75rem; border-radius: 9999px; font-weight: 600;">
+        MySQL DML Operations
+      </span>
+      <a href="../index.html" class="nav-btn">All Experiments</a>
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <main>
+
+    <header class="page-header">
+      <span class="badge-pill">Experiment 22 &bull; Module PHP &amp; MySQL Data Manipulation</span>
+      <h1 class="page-title">Implementation of MySQL Commands: DELETE, ORDER BY, UPDATE</h1>
+      <p class="page-subtitle">
+        Interactive database workbench executing atomic records deletion, multi-column sorting (ASC/DESC), and attribute updates with prepared queries and SQL statement visualization.
+      </p>
+    </header>
+
+    <!-- Tabs Nav -->
+    <div class="tabs-nav">
+      <button class="tab-btn active" onclick="switchTab('workbench', this)">
+        ⚡ Live Database Workbench
+      </button>
+      <button class="tab-btn" onclick="switchTab('php', this)">
+        🐘 mysql_crud_demo.php (Server Script)
+      </button>
+      <button class="tab-btn" onclick="switchTab('sql', this)">
+        🗄️ schema.sql (Table DDL &amp; Seeds)
+      </button>
+      <button class="tab-btn" onclick="switchTab('manual', this)">
+        📘 Academic Lab Manual &amp; Theory
+      </button>
+    </div>
+
+    <!-- TAB 1: Live Workbench -->
+    <section id="tab-workbench" class="tab-panel active">
+      <div class="card">
+        
+        <!-- Header & Controls -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; border-bottom: 1px solid var(--card-border); padding-bottom: 0.75rem; flex-wrap: wrap; gap: 0.75rem;">
+          <h2 class="card-title" style="margin-bottom: 0; border: none; padding: 0;">
+            📊 Live Table: employees (Click Column Headers to Test b) ORDER BY)
+          </h2>
+          <button type="button" class="btn-copy" onclick="resetEmployees()">🔄 Reset Sample Records</button>
+        </div>
+
+        <!-- Inline Update Editor (c) UPDATE -->
+        <div id="update-container" class="edit-box" style="display: none;">
+          <h3 style="color: #38bdf8; margin: 0 0 1rem 0; font-size: 1.1rem;">
+            ✏️ Command c) UPDATE: Editing Employee <span id="edit-emp-name" style="color: #fff;"></span> (<span id="edit-emp-id-badge" style="font-family: 'Fira Code', monospace; color: #a5b4fc;"></span>)
+          </h3>
+          <form onsubmit="handleApplyUpdate(event)">
+            <input type="hidden" id="edit-id">
+            <div class="form-grid">
+              <div>
+                <label for="edit-dept">Department</label>
+                <input type="text" id="edit-dept" required>
+              </div>
+              <div>
+                <label for="edit-desig">Designation</label>
+                <input type="text" id="edit-desig" required>
+              </div>
+              <div>
+                <label for="edit-salary">Salary (₹)</label>
+                <input type="number" id="edit-salary" step="1000" required>
+              </div>
+            </div>
+            <div style="display: flex; gap: 0.5rem;">
+              <button type="submit" class="btn-action btn-update" style="padding: 0.6rem 1.25rem;">💾 Execute UPDATE Statement</button>
+              <button type="button" class="btn-copy" onclick="cancelEdit()">Cancel</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Table Display -->
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th id="th-emp_id" onclick="sortByColumn('emp_id')">ID <span class="sort-icon">▲</span></th>
+                <th id="th-emp_name" onclick="sortByColumn('emp_name')">Employee Name <span class="sort-icon"></span></th>
+                <th id="th-department" onclick="sortByColumn('department')">Department <span class="sort-icon"></span></th>
+                <th id="th-designation" onclick="sortByColumn('designation')">Designation <span class="sort-icon"></span></th>
+                <th id="th-salary" onclick="sortByColumn('salary')">Salary (₹) <span class="sort-icon"></span></th>
+                <th id="th-joined_date" onclick="sortByColumn('joined_date')">Joined Date <span class="sort-icon"></span></th>
+                <th style="cursor: default;">Actions (UPDATE / DELETE)</th>
+              </tr>
+            </thead>
+            <tbody id="employees-tbody">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Real-time SQL Inspector -->
+        <div class="sql-inspector">
+          <span class="label">🔍 Executed MySQL Command Inspector:</span>
+          <code id="sql-query-display">SELECT * FROM employees ORDER BY emp_id ASC;</code>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TAB 2: PHP Script View -->
+    <section id="tab-php" class="tab-panel">
+      <div class="card">
+        <div class="code-container">
+          <div class="code-header">
+            <span>mysql_crud_demo.php (Complete PHP Implementation)</span>
+            <button class="btn-copy" onclick="copyCode('code-crud', this)">📋 Copy PHP Script</button>
+          </div>
+          <pre><code id="code-crud">&lt;?php
+/**
+ * Experiment 22: PHP Script to Implement MySQL Commands:
+ * a) DELETE  b) ORDER BY  c) UPDATE
+ * Course: Advanced Web Technology (CSIT248) - Amity University Noida
+ */
+
+$pdo = new PDO("mysql:host=localhost;dbname=company_db;charset=utf8mb4", "root", "", [
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+]);
+
+// ==========================================
+// a) DELETE Command Implementation
+// ==========================================
+if (isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['id'])) {
+    $delete_id = (int)$_GET['id'];
+    $stmt = $pdo->prepare("DELETE FROM employees WHERE emp_id = :id");
+    $stmt->execute([':id' => $delete_id]);
+    echo "Employee #$delete_id successfully removed from database.";
+}
+
+// ==========================================
+// c) UPDATE Command Implementation
+// ==========================================
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'update') {
+    $id    = (int)$_POST['emp_id'];
+    $desig = trim($_POST['designation']);
+    $sal   = (float)$_POST['salary'];
+    $dept  = trim($_POST['department']);
+
+    $stmt = $pdo->prepare("UPDATE employees SET designation = :desig, salary = :sal, department = :dept WHERE emp_id = :id");
+    $stmt->execute([
+        ':desig' => $desig,
+        ':sal'   => $sal,
+        ':dept'  => $dept,
+        ':id'    => $id
+    ]);
+    echo "Employee #$id successfully updated.";
+}
+
+// ==========================================
+// b) ORDER BY Command Implementation
+// ==========================================
+$allowedCols = ['emp_id', 'emp_name', 'department', 'designation', 'salary', 'joined_date'];
+$sort = in_array($_GET['sort'] ?? '', $allowedCols) ? $_GET['sort'] : 'emp_id';
+$order = (strtoupper($_GET['order'] ?? '') === 'DESC') ? 'DESC' : 'ASC';
+
+$stmt = $pdo->query("SELECT * FROM employees ORDER BY $sort $order");
+$employees = $stmt->fetchAll();
+?&gt;</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: SQL Schema View -->
+    <section id="tab-sql" class="tab-panel">
+      <div class="card">
+        <div class="code-container">
+          <div class="code-header">
+            <span>schema.sql (Table DDL &amp; Seed Data)</span>
+            <button class="btn-copy" onclick="copyCode('code-schema', this)">📋 Copy SQL</button>
+          </div>
+          <pre><code id="code-schema">-- Experiment 22: Schema for DELETE, ORDER BY, UPDATE
+CREATE DATABASE IF NOT EXISTS company_db;
+USE company_db;
+
+CREATE TABLE IF NOT EXISTS employees (
+    emp_id INT AUTO_INCREMENT PRIMARY KEY,
+    emp_name VARCHAR(100) NOT NULL,
+    department VARCHAR(60) NOT NULL,
+    designation VARCHAR(80) NOT NULL,
+    salary DECIMAL(10, 2) NOT NULL,
+    email VARCHAR(120) NOT NULL UNIQUE,
+    joined_date DATE NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO employees (emp_name, department, designation, salary, email, joined_date) VALUES
+('Atul Anand', 'Information Tech', 'Full Stack Engineer', 95000.00, 'atul@company.com', '2023-06-15'),
+('Priya Sharma', 'Product & Design', 'UI/UX Lead', 88000.00, 'priya@company.com', '2023-08-01'),
+('Rohan Verma', 'DevOps & Cloud', 'Cloud Architect', 115000.00, 'rohan@company.com', '2022-11-20'),
+('Ananya Sengupta', 'Data & AI', 'Machine Learning Eng', 105000.00, 'ananya@company.com', '2023-01-10'),
+('Vikramaditya Rao', 'Cybersecurity', 'Security Analyst', 82000.00, 'vikram@company.com', '2024-02-18'),
+('Sneha Kulkarni', 'Quality Assurance', 'Lead QA Specialist', 76000.00, 'sneha@company.com', '2023-09-05');</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: Academic Manual -->
+    <section id="tab-manual" class="tab-panel">
+      <div class="card" style="line-height: 1.8;">
+        <h2 style="color: #38bdf8; font-size: 1.5rem; margin-bottom: 1rem;">Experiment 22: Academic Lab Manual</h2>
+
+        <h3 style="color: #818cf8; margin-top: 1.5rem; margin-bottom: 0.5rem;">1. Aim</h3>
+        <p style="color: #cbd5e1;">
+          To write and implement a PHP script that interacts with a MySQL database to execute the standard SQL commands:
+          <strong>a) DELETE</strong>, <strong>b) ORDER BY</strong>, and <strong>c) UPDATE</strong> with parameter binding and exception handling.
+        </p>
+
+        <h3 style="color: #818cf8; margin-top: 1.5rem; margin-bottom: 0.5rem;">2. Command Syntax &amp; Theoretical Notes</h3>
+        <ul style="color: #cbd5e1; margin-left: 1.5rem;">
+          <li><strong>a) DELETE:</strong> Removes specific tuples matching criteria:
+            <br><code>DELETE FROM employees WHERE emp_id = ?;</code>
+            <br><em>Security note:</em> Always use a strict <code>WHERE</code> clause and prepared statement to prevent accidental table truncation.
+          </li>
+          <li style="margin-top: 0.75rem;"><strong>b) ORDER BY:</strong> Sorts the result set by one or more columns in ascending (default) or descending order:
+            <br><code>SELECT * FROM employees ORDER BY salary DESC;</code>
+            <br><em>Security note:</em> Column names cannot be bound as PDO parameters; always sanitize through an explicit whitelist array.
+          </li>
+          <li style="margin-top: 0.75rem;"><strong>c) UPDATE:</strong> Modifies existing attribute values in one or more records:
+            <br><code>UPDATE employees SET designation = ?, salary = ? WHERE emp_id = ?;</code>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p style="margin-bottom: 0.4rem;">
+      Designed &amp; Developed by <strong style="color: #818cf8;">Atul Anand</strong> &bull; BCA (Hons.) with Research &bull; Semester III
+    </p>
+    <p style="color: #64748b; font-size: 0.8rem;">
+      Amity University Noida &bull; Department of Computer Applications &bull; CSIT248: Advanced Web Technology
+    </p>
+  </footer>
+
+  <!-- Script for Workbench Execution -->
+  <script>
+    const INITIAL_EMPLOYEES = [
+      { emp_id: 1, emp_name: "Atul Anand", department: "Information Tech", designation: "Full Stack Engineer", salary: 95000, joined_date: "2023-06-15" },
+      { emp_id: 2, emp_name: "Priya Sharma", department: "Product & Design", designation: "UI/UX Lead", salary: 88000, joined_date: "2023-08-01" },
+      { emp_id: 3, emp_name: "Rohan Verma", department: "DevOps & Cloud", designation: "Cloud Architect", salary: 115000, joined_date: "2022-11-20" },
+      { emp_id: 4, emp_name: "Ananya Sengupta", department: "Data & AI", designation: "Machine Learning Eng", salary: 105000, joined_date: "2023-01-10" },
+      { emp_id: 5, emp_name: "Vikramaditya Rao", department: "Cybersecurity", designation: "Security Analyst", salary: 82000, joined_date: "2024-02-18" },
+      { emp_id: 6, emp_name: "Sneha Kulkarni", department: "Quality Assurance", designation: "Lead QA Specialist", salary: 76000, joined_date: "2023-09-05" }
+    ];
+
+    let employees = JSON.parse(JSON.stringify(INITIAL_EMPLOYEES));
+    let currentSort = 'emp_id';
+    let currentOrder = 'ASC';
+
+    function renderTable() {
+      const tbody = document.getElementById("employees-tbody");
+      tbody.innerHTML = "";
+
+      if (employees.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; color: #94a3b8; padding: 2rem;">No records remaining. Click "Reset Sample Records" to restore data.</td></tr>`;
+        return;
+      }
+
+      employees.forEach(emp => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td style="font-family: 'Fira Code', monospace; color: #a5b4fc;">#${emp.emp_id}</td>
+          <td><strong style="color: #ffffff;">${escapeHtml(emp.emp_name)}</strong></td>
+          <td>${escapeHtml(emp.department)}</td>
+          <td><span style="background: rgba(99, 102, 241, 0.15); color: #a5b4fc; padding: 0.2rem 0.5rem; border-radius: 4px;">${escapeHtml(emp.designation)}</span></td>
+          <td style="font-family: 'Fira Code', monospace; color: #34d399; font-weight: 700;">₹${new Intl.NumberFormat('en-IN').format(emp.salary)}</td>
+          <td style="font-family: 'Fira Code', monospace; color: #cbd5e1;">${emp.joined_date}</td>
+          <td>
+            <button type="button" class="btn-action btn-update" onclick="openEdit(${emp.emp_id})">✏️ Edit (UPDATE)</button>
+            <button type="button" class="btn-action btn-delete" onclick="handleDelete(${emp.emp_id})">🗑️ DELETE</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      updateSortIndicators();
+    }
+
+    // b) ORDER BY
+    function sortByColumn(col) {
+      if (currentSort === col) {
+        currentOrder = (currentOrder === 'ASC') ? 'DESC' : 'ASC';
+      } else {
+        currentSort = col;
+        currentOrder = 'ASC';
+      }
+
+      employees.sort((a, b) => {
+        let valA = a[col];
+        let valB = b[col];
+
+        if (typeof valA === 'string') {
+          return currentOrder === 'ASC' ? valA.localeCompare(valB) : valB.localeCompare(valA);
+        } else {
+          return currentOrder === 'ASC' ? valA - valB : valB - valA;
+        }
+      });
+
+      document.getElementById("sql-query-display").textContent = `SELECT * FROM employees ORDER BY ${currentSort} ${currentOrder};`;
+      renderTable();
+    }
+
+    function updateSortIndicators() {
+      ['emp_id', 'emp_name', 'department', 'designation', 'salary', 'joined_date'].forEach(col => {
+        const th = document.getElementById('th-' + col);
+        if (!th) return;
+        const icon = th.querySelector('.sort-icon');
+        if (col === currentSort) {
+          th.classList.add('active-sort');
+          icon.textContent = currentOrder === 'ASC' ? ' ▲' : ' ▼';
+        } else {
+          th.classList.remove('active-sort');
+          icon.textContent = '';
+        }
+      });
+    }
+
+    // a) DELETE
+    function handleDelete(id) {
+      const emp = employees.find(e => e.emp_id === id);
+      if (!emp) return;
+
+      if (confirm(`Execute MySQL DELETE statement for Employee #${id} (${emp.emp_name})?`)) {
+        employees = employees.filter(e => e.emp_id !== id);
+        document.getElementById("sql-query-display").textContent = `DELETE FROM employees WHERE emp_id = ${id};\n-- Affected Rows: 1`;
+        renderTable();
+      }
+    }
+
+    // c) UPDATE
+    function openEdit(id) {
+      const emp = employees.find(e => e.emp_id === id);
+      if (!emp) return;
+
+      document.getElementById("edit-id").value = emp.emp_id;
+      document.getElementById("edit-emp-name").textContent = emp.emp_name;
+      document.getElementById("edit-emp-id-badge").textContent = `#${emp.emp_id}`;
+      document.getElementById("edit-dept").value = emp.department;
+      document.getElementById("edit-desig").value = emp.designation;
+      document.getElementById("edit-salary").value = emp.salary;
+
+      const editBox = document.getElementById("update-container");
+      editBox.style.display = "block";
+      editBox.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function cancelEdit() {
+      document.getElementById("update-container").style.display = "none";
+    }
+
+    function handleApplyUpdate(e) {
+      e.preventDefault();
+      const id = parseInt(document.getElementById("edit-id").value);
+      const emp = employees.find(e => e.emp_id === id);
+      if (!emp) return;
+
+      const newDept = document.getElementById("edit-dept").value.trim();
+      const newDesig = document.getElementById("edit-desig").value.trim();
+      const newSalary = parseFloat(document.getElementById("edit-salary").value);
+
+      emp.department = newDept;
+      emp.designation = newDesig;
+      emp.salary = newSalary;
+
+      document.getElementById("sql-query-display").textContent = 
+        `UPDATE employees\nSET designation = '${newDesig}', salary = ${newSalary}, department = '${newDept}'\nWHERE emp_id = ${id};\n-- Rows matched: 1, Changed: 1`;
+
+      cancelEdit();
+      renderTable();
+    }
+
+    function resetEmployees() {
+      employees = JSON.parse(JSON.stringify(INITIAL_EMPLOYEES));
+      currentSort = 'emp_id';
+      currentOrder = 'ASC';
+      document.getElementById("sql-query-display").textContent = `SELECT * FROM employees ORDER BY emp_id ASC;`;
+      cancelEdit();
+      renderTable();
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+    }
+
+    function switchTab(tabId, btn) {
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('tab-' + tabId).classList.add('active');
+      btn.classList.add('active');
+    }
+
+    function copyCode(elementId, btn) {
+      const text = document.getElementById(elementId).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const orig = btn.innerText;
+        btn.innerText = "Copied! ✅";
+        btn.style.background = "#10b981";
+        setTimeout(() => {
+          btn.innerText = orig;
+          btn.style.background = "";
+        }, 2000);
+      });
+    }
+
+    window.addEventListener("DOMContentLoaded", renderTable);
+  </script>
+
+</body>
+
+</html>
