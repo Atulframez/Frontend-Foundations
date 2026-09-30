@@ -1,4 +1,4 @@
-# 🌐 Advanced Web Technology (CSIT248) &bull; Complete Lab Portfolio
+# 🌐 Frontend Foundations &amp; Advanced Web Technology (CSIT248) Portfolio
 
 <p align="center">
   <a href="https://atulanand-web-tech-labwork.netlify.app/">
@@ -20,21 +20,21 @@
 
 ---
 
-## 🌟 Overview
+## 📁 Repository Structure
 
-This repository contains the complete practical portfolio for **CSIT248: Advanced Web Technology**, Department of Computer Applications, Amity University Noida. 
-
-Every experiment is built with:
-- **Interactive Web Interfaces**: Standalone client-side workbench applications matching modern dark UI aesthetic.
-- **Server-Side PHP & MySQL Implementations**: Clean, secure, and production-ready PHP scripts utilizing PDO prepared statements and XML DOM parsers.
-- **In-Browser Code Viewers**: Tabbed source code inspectors with one-click clipboard copying.
-- **Academic Lab Documentation**: Complete Aim, Algorithm, Theory, and Sample Outputs for practical submissions.
+| Directory / Component | Description |
+| :--- | :--- |
+| **[`index.html`](./index.html)** | **Main CSIT248 Lab Portfolio Hub** — Interactive dashboard housing all 21 practical experiments with live launchers and filter matrix. |
+| **[`experiment-01` to `22`](./)** | Dedicated directories for each assigned experiment (HTML5 forms, DOM scripts, XML parsers, and PHP/MySQL backends). |
+| **[`Chapter-00/`](./Chapter-00)** | Foundational HTML exercises, document anatomy, tags, and client-side image mapping. |
+| **[`Chapter-01/`](./Chapter-01)** | Intermediate HTML layouts, multimedia audio/video integration, and styling fundamentals. |
+| **[`Project/`](./Project)** | Multi-page portfolio projects, sound effect integrations, and responsive web pages. |
 
 ---
 
 ## 🚀 Live Demo & Deployment
 
-The entire portfolio is continuously deployed and accessible online via Netlify:
+The entire laboratory portfolio is deployed live on Netlify:
 
 👉 **[Launch Live Web Application (atulanand-web-tech-labwork.netlify.app)](https://atulanand-web-tech-labwork.netlify.app/)**
 
@@ -45,27 +45,27 @@ The entire portfolio is continuously deployed and accessible online via Netlify:
 ### [Experiment 13: Student XML Database & Server-Side Lookup](https://atulanand-web-tech-labwork.netlify.app/experiment-13/)
 - **Problem Statement:** Create an XML document of 10 students of SEM VI IT. Add their Enrollment No., marks obtained in 5 subjects, total marks, and percentage saved at the server. Write a program that accepts a student's Enrollment No. as input and returns their marks, total, and percentage by querying the server XML document.
 - **Technologies:** XML, DOMParser, PHP SimpleXML / XPath.
-- **Files:** [`students.xml`](./experiment-13/students.xml) &bull; [`student_lookup.php`](./experiment-13/student_lookup.php) &bull; [Live Demo](https://atulanand-web-tech-labwork.netlify.app/experiment-13/)
+- **Files:** [`experiment-13/students.xml`](./experiment-13/students.xml) &bull; [`experiment-13/student_lookup.php`](./experiment-13/student_lookup.php) &bull; [Live Demo](https://atulanand-web-tech-labwork.netlify.app/experiment-13/)
 
 ### [Experiment 19: Add New Record in CUSTOMER Database](https://atulanand-web-tech-labwork.netlify.app/experiment-19/)
 - **Problem Statement:** Write a PHP Script to add a new record to the CUSTOMER database with input validation and prepared SQL statements.
 - **Technologies:** PHP 8.x, MySQL, PDO Prepared Statements, SQL Injection Defense, Unique Constraint Handling.
-- **Files:** [`customer_schema.sql`](./experiment-19/customer_schema.sql) &bull; [`add_customer.php`](./experiment-19/add_customer.php) &bull; [Live Demo](https://atulanand-web-tech-labwork.netlify.app/experiment-19/)
+- **Files:** [`experiment-19/customer_schema.sql`](./experiment-19/customer_schema.sql) &bull; [`experiment-19/add_customer.php`](./experiment-19/add_customer.php) &bull; [Live Demo](https://atulanand-web-tech-labwork.netlify.app/experiment-19/)
 
 ### [Experiment 20: Implementation of include( ) and require( )](https://atulanand-web-tech-labwork.netlify.app/experiment-20/)
 - **Problem Statement:** Write a PHP Script to implement and demonstrate functions `include()` and `require()`.
 - **Technologies:** Modular PHP Architecture, Error Severity Levels (`E_WARNING` vs `E_COMPILE_ERROR`), `include_once` / `require_once` re-declaration guards.
-- **Files:** [`config.php`](./experiment-20/config.php) &bull; [`header.php`](./experiment-20/header.php) &bull; [`footer.php`](./experiment-20/footer.php) &bull; [`include_require_demo.php`](./experiment-20/include_require_demo.php) &bull; [Live Demo](https://atulanand-web-tech-labwork.netlify.app/experiment-20/)
+- **Files:** [`experiment-20/config.php`](./experiment-20/config.php) &bull; [`experiment-20/header.php`](./experiment-20/header.php) &bull; [`experiment-20/footer.php`](./experiment-20/footer.php) &bull; [`experiment-20/include_require_demo.php`](./experiment-20/include_require_demo.php) &bull; [Live Demo](https://atulanand-web-tech-labwork.netlify.app/experiment-20/)
 
 ### [Experiment 21: Demonstration of Array, String and Numeric Functions](https://atulanand-web-tech-labwork.netlify.app/experiment-21/)
 - **Problem Statement:** Write a PHP Script to demonstrate array, string, and numeric functions.
 - **Technologies:** Native PHP Standard Library (over 25 functions demonstrated with live parameters).
-- **Files:** [`functions_demo.php`](./experiment-21/functions_demo.php) &bull; [Live Demo](https://atulanand-web-tech-labwork.netlify.app/experiment-21/)
+- **Files:** [`experiment-21/functions_demo.php`](./experiment-21/functions_demo.php) &bull; [Live Demo](https://atulanand-web-tech-labwork.netlify.app/experiment-21/)
 
 ### [Experiment 22: MySQL Commands Implementation (DELETE, ORDER BY, UPDATE)](https://atulanand-web-tech-labwork.netlify.app/experiment-22/)
 - **Problem Statement:** Write a PHP Script to implement the following MySQL commands: a) `DELETE` b) `ORDER BY` c) `UPDATE`.
 - **Technologies:** PHP PDO, Whitelist-based Column Sorting, DML Transactions, Real-time SQL Command Inspector.
-- **Files:** [`schema.sql`](./experiment-22/schema.sql) &bull; [`mysql_crud_demo.php`](./experiment-22/mysql_crud_demo.php) &bull; [Live Demo](https://atulanand-web-tech-labwork.netlify.app/experiment-22/)
+- **Files:** [`experiment-22/schema.sql`](./experiment-22/schema.sql) &bull; [`experiment-22/mysql_crud_demo.php`](./experiment-22/mysql_crud_demo.php) &bull; [Live Demo](https://atulanand-web-tech-labwork.netlify.app/experiment-22/)
 
 ---
 

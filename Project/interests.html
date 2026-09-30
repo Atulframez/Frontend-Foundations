@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Interests - The Atul Anand Personal Web Project</title>
+
+    <style>
+        body {
+            background-color: #000000;
+            color: #00ff66;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 15px;
+            line-height: 1.5;
+            width: 80ch;
+            max-width: 95vw;
+            margin: 20px auto;
+            text-shadow: 0 0 8px #00ff66;
+        }
+
+        .title {
+            text-align: right;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 15px;
+            font-weight: normal;
+            letter-spacing: 2px;
+            margin: 30px 0;
+        }
+
+        p {
+            margin: 20px 0;
+            text-align: justify;
+        }
+
+        a {
+            color: #00ff66;
+            text-decoration: none;
+        }
+
+        a:hover {
+            background-color: #00ff66;
+            color: #000000;
+            text-shadow: none;
+        }
+
+        dl {
+            margin: 25px 0;
+        }
+
+        dt {
+            display: inline-block;
+            width: 22ch;
+            margin-left: 7ch;
+            vertical-align: top;
+            margin-top: 15px;
+        }
+
+        dd {
+            display: inline-block;
+            width: 50ch;
+            vertical-align: top;
+            margin-top: 15px;
+        }
+
+        #prompt-line {
+            margin-top: 35px;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+        }
+
+        #cmd {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #00ff66;
+            font-family: inherit;
+            font-size: 15px;
+            width: 1ch;
+            caret-color: transparent;
+            padding: 0;
+            margin: 0;
+        }
+
+        #cursor {
+            display: inline-block;
+            width: 1ch;
+            height: 1.15em;
+            background: #00ff66;
+            box-shadow: 0 0 8px #00ff66;
+            animation: blink 1s infinite steps(1);
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="title">The World Wide Web project</div>
+
+    <h1>INTERESTS & PASSIONS</h1>
+
+    <p>
+        My technical interests span web architecture, artificial intelligence,
+        developer tools, and open-source ecosystems.
+    </p>
+
+    <p>
+        I enjoy studying the evolution of computing from 1991 hypertext systems
+        to modern intelligent platforms, exploring UI design ergonomics, and
+        experimenting with new technologies.
+    </p>
+
+    <dl>
+        <dt><a href="index.html" data-ref="1">Project Home[1]</a></dt>
+        <dd>Return to the main overview index page.</dd>
+
+        <dt><a href="about.html" data-ref="2">About Me[2]</a></dt>
+        <dd>Read personal introduction and background.</dd>
+
+        <dt><a href="education.html" data-ref="3">Education[3]</a></dt>
+        <dd>View academic details and qualifications.</dd>
+
+        <dt><a href="skills.html" data-ref="4">Skills[4]</a></dt>
+        <dd>View technical tools and programming languages.</dd>
+
+        <dt><a href="projects.html" data-ref="5">Projects[5]</a></dt>
+        <dd>Explore software and web development projects.</dd>
+
+        <dt><a href="contact.html" data-ref="6">Contact[6]</a></dt>
+        <dd>Ways to reach out and connect online.</dd>
+    </dl>
+
+    <div id="prompt-line">
+        &lt;ref.number&gt;, Back, &lt;RETURN&gt; for more, or Help:&nbsp;
+        <input type="text" id="cmd" autofocus autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+        <span id="cursor"></span>
+    </div>
+
+    <!-- Official CERN Line Mode Browser Keyboard Sound Engine -->
+    <script>
+        var sounds = {
+            audioPool: [],
+            init: function() {
+                for (var i = 1; i <= 5; i++) {
+                    var audio = new Audio('sounds/key' + i + '.wav');
+                    audio.preload = 'auto';
+                    sounds.audioPool.push(audio);
+                }
+            },
+            play: function() {
+                try {
+                    var randIndex = Math.floor(Math.random() * sounds.audioPool.length);
+                    var sound = sounds.audioPool[randIndex];
+                    if (sound) {
+                        var clone = sound.cloneNode();
+                        clone.volume = 0.55;
+                        clone.play().catch(function(){});
+                    }
+                } catch(e) {}
+            }
+        };
+        sounds.init();
+
+        var cmd = document.getElementById('cmd');
+        var links = document.querySelectorAll('a[data-ref]');
+
+        cmd.addEventListener('input', function() {
+            cmd.style.width = Math.max(1, cmd.value.length + 1) + 'ch';
+            sounds.play();
+        });
+
+        cmd.addEventListener('keydown', function(e) {
+            sounds.play();
+
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                var val = cmd.value.trim().toLowerCase();
+                cmd.value = '';
+                cmd.style.width = '1ch';
+
+                if (!val) {
+                    window.scrollBy({ top: 350, behavior: 'smooth' });
+                } else if (/^\d+$/.test(val)) {
+                    var idx = parseInt(val, 10) - 1;
+                    if (links[idx]) {
+                        window.location.href = links[idx].href;
+                    } else {
+                        alert('Link [' + val + '] not found. Enter 1 to ' + links.length);
+                    }
+                } else if (val === 'back' || val === 'b') {
+                    window.history.back();
+                } else if (val === 'help' || val === 'h' || val === '?') {
+                    alert("CERN Line Mode Browser Commands:\n\n<number> - Open link (1-6)\n<RETURN> - Scroll down\nback     - Return to previous page\nhome     - Go to index.html");
+                } else if (val === 'home') {
+                    window.location.href = 'index.html';
+                }
+            }
+        });
+
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('a')) {
+                cmd.focus();
+            }
+        });
+    </script>
+</body>
+</html>
