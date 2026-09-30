@@ -291,7 +291,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || isset($_GET['enrollment_no'])) {
 
   <nav>
     <a href="index.html" class="nav-brand">&larr; CSIT248 Lab Experiments</a>
-    <span style="font-size: 0.85rem; color: var(--text-muted);">Experiment 13: XML Server Processing</span>
+    <div style="display: flex; align-items: center; gap: 0.75rem;">
+      <a href="https://atulanand-web-tech-labwork.netlify.app/" target="_blank" rel="noopener noreferrer"
+        style="font-size: 0.85rem; color: #00c7b7; text-decoration: none; background: rgba(0, 199, 183, 0.15); border: 1px solid rgba(0, 199, 183, 0.35); padding: 0.3rem 0.75rem; border-radius: 9999px; font-weight: 600; display: inline-flex; align-items: center; gap: 0.35rem;">
+        🌐 Live Portfolio
+      </a>
+      <span style="font-size: 0.85rem; color: var(--text-muted);">Experiment 13: XML Server Processing</span>
+    </div>
   </nav>
 
   <div class="container">
@@ -385,6 +391,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || isset($_GET['enrollment_no'])) {
       <?php endif; ?>
     </div>
   </div>
+
+  <footer style="text-align: center; margin-top: 3rem; padding: 1.5rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.85rem;">
+    <p style="margin-bottom: 0.35rem;">Designed &amp; Developed by <strong style="color: #818cf8;">Atul Anand</strong> &bull; Amity University Noida &bull; CSIT248</p>
+    <p style="margin: 0;">
+      Live Portfolio: <a href="https://atulanand-web-tech-labwork.netlify.app/" target="_blank" rel="noopener noreferrer" style="color: #00c7b7; text-decoration: none; font-weight: 600;">atulanand-web-tech-labwork.netlify.app</a>
+    </p>
+  </footer>
 
 </body>
 </html>
