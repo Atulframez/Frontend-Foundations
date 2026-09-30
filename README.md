@@ -129,8 +129,7 @@ open index.html
 ## 👨‍💻 Author & Connect
 
 - **Atul Anand**
-- BCA (Hons.) with Research &bull; Semester III
-- Department of Computer Applications, Amity University Noida
+- BCA (Hons.) with Research 
 - 🌐 **Live Portfolio:** [https://atulanand-web-tech-labwork.netlify.app/](https://atulanand-web-tech-labwork.netlify.app/)
 - 💻 **GitHub:** [https://github.com/Atulframez](https://github.com/Atulframez)
 - ✉️ **Email:** [atulll0923@gmail.com](mailto:atulll0923@gmail.com)
